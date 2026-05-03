@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FIXWITHYUVI – Direct Download Files</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #050a0f;
+    --panel: #0a1520;
+    --border: #0ff3;
+    --accent: #00f0ff;
+    --accent2: #ff6a00;
+    --green: #00ff88;
+    --text: #cce8f0;
+    --muted: #4a7a8a;
+    --card: #0d1e2e;
+    --glow: 0 0 18px #00f0ff55, 0 0 40px #00f0ff22;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 48px 48px; }
+  }
+
+  /* Radial glow overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, #00f0ff18 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    padding: 54px 20px 32px;
+    position: relative;
+  }
+
+  .logo-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #00f0ff22, #ff6a0011);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 4px 16px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    box-shadow: var(--glow);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 12px #00f0ff44, 0 0 30px #00f0ff18; }
+    50% { box-shadow: 0 0 24px #00f0ff88, 0 0 60px #00f0ff33; }
+  }
+
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: clamp(28px, 6vw, 58px);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 0 30px #00f0ff66, 0 0 80px #00f0ff22;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .tagline {
+    margin-top: 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 28px auto 0;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-top: 48px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent2), transparent);
+    opacity: 0.4;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid #0ff2;
+    border-radius: 6px;
+    padding: 22px 22px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.20s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.30s; }
+  .card:nth-child(7) { animation-delay: 0.35s; }
+  .card:nth-child(8) { animation-delay: 0.40s; }
+  .card:nth-child(9) { animation-delay: 0.45s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--glow); }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .card-meta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+    z-index: 0;
+  }
+
+  .btn span { position: relative; z-index: 1; }
+
+  .btn:hover { color: #000; box-shadow: 0 0 20px var(--accent); }
+  .btn:hover::before { transform: scaleX(1); }
+
+  .btn-ext {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+  .btn-ext::before { background: var(--accent2); }
+  .btn-ext:hover { box-shadow: 0 0 20px var(--accent2); }
+
+  /* Sigma section cards */
+  .card.sigma .card-name { color: #ffcc00; }
+  .card.sigma { border-color: #ffcc0022; }
+  .card.sigma:hover { border-color: #ffcc00; box-shadow: 0 0 18px #ffcc0044, 0 0 40px #ffcc0018; }
+  .card.sigma .btn { border-color: #ffcc00; color: #ffcc00; }
+  .card.sigma .btn::before { background: #ffcc00; }
+  .card.sigma .btn:hover { box-shadow: 0 0 20px #ffcc00; }
+  .card.sigma::before { background: linear-gradient(90deg, transparent, #ffcc00, transparent); }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 64px;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    padding-bottom: 24px;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .scan-line {
+    position: fixed;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00f0ff33, transparent);
+    animation: scan 6s linear infinite;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  @keyframes scan {
+    from { top: -2px; }
+    to { top: 100vh; }
+  }
+
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scan-line"></div>
+
+<div class="wrapper">
+  <header>
+    <div class="logo-badge">⚡ Direct Download Portal</div>
+    <h1>FIX<span>WITH</span>YUVI</h1>
+    <p class="tagline">USB Drivers &amp; Tools — Free Download Hub</p>
+    <div class="divider"></div>
+  </header>
+
+  <!-- USB DRIVERS -->
+  <div class="section">
+    <div class="section-title">USB Drivers</div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-icon">📱</span>
+        <div class="card-name">Samsung Android USB Driver</div>
+        <div class="card-meta">v1.9.0.0 · .EXE · Official</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🔌</span>
+        <div class="card-name">OPPO MTK QCOM USB Driver</div>
+        <div class="card-meta">v4.0.1.6 · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🧩</span>
+        <div class="card-name">libusb-win32</div>
+        <div class="card-meta">v1.2.6.0 · Filter Driver · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🔄</span>
+        <div class="card-name">USB Redirector</div>
+        <div class="card-meta">v1.9.7 Customer · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">📡</span>
+        <div class="card-name">SPD Spreadtrum Driver 77xx</div>
+        <div class="card-meta">.ZIP Package</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <div class="card-name">ADB Driver</div>
+        <div class="card-meta">15 Second ADB Installer v1.5.6 · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🛡️</span>
+        <div class="card-name">USB DK</div>
+        <div class="card-meta">UsbDk v1.0.22 x64 · .MSI</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUNTIMES & TOOLS -->
+  <div class="section">
+    <div class="section-title">Runtimes &amp; System Tools</div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <div class="card-name">Visual C++ Runtimes All-in-One</div>
+        <div class="card-meta">Dec 2025 · .ZIP</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Visual-C-Runtimes-All-in-One-Dec-2025_2.zip">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🍎</span>
+        <div class="card-name">WinRa1n 2.1</div>
+        <div class="card-meta">iOS Tool for Windows · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIGMA & NETWORK TOOLS -->
+  <div class="section">
+    <div class="section-title">Sigma &amp; Network Tools</div>
+    <div class="grid">
+
+      <div class="card sigma">
+        <span class="card-icon">🔑</span>
+        <div class="card-name">Sigma Plus Software</div>
+        <div class="card-meta">v1.01.10 · .EXE · sigmakey.com</div>
+        <a class="btn btn-ext" href="https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card sigma">
+        <span class="card-icon">🌐</span>
+        <div class="card-name">USB Over Network Client</div>
+        <div class="card-meta">64-bit · .MSI · usb-over-network.com</div>
+        <a class="btn btn-ext" href="https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+      <div class="card sigma">
+        <span class="card-icon">🔒</span>
+        <div class="card-name">Radmin VPN</div>
+        <div class="card-meta">v2.0.4899.9 · .EXE · radmin-vpn.com</div>
+        <a class="btn btn-ext" href="https://download.radmin-vpn.com/files/Radmin_VPN_2.0.4899.9.exe">
+          <span>⬇ Download</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 <a href="#">FIXWITHYUVI</a> · All files are direct links · Free to use</p>
+    <p style="margin-top:8px; font-size:9px; color:#2a4a5a;">Hosted via GitHub Pages · No login required</p>
+  </footer>
+</div>
+
+</body>
+</html>
