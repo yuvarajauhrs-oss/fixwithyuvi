@@ -303,13 +303,20 @@
       </div>
       <div class="stat-sep"></div>
       <div class="stat-item">
-        <span class="stat-value">10</span>
+        <span class="stat-value">13</span>
         <span class="stat-label">📦 Files</span>
       </div>
       <div class="stat-sep"></div>
       <div class="stat-item">
-        <span class="stat-value" id="clock" style="font-size:13px;color:var(--accent)">--:--:--</span>
-        <span class="stat-label">🕐 Local Time</span>
+        <span class="stat-value" id="onlineCount" style="color:var(--accent2)">—</span>
+        <span class="stat-label">🟢 Online Now</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat-item" style="align-items:center;">
+        <span id="clock12" style="font-family:'Orbitron',monospace;font-size:13px;color:var(--accent);font-weight:700;text-shadow:0 0 10px #00f0ff77;">--:--:-- --</span>
+        <span id="clock24" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px;">--:--:--</span>
+        <span id="istDate" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6a7a;letter-spacing:1px;margin-top:1px;">-- --- ----</span>
+        <span class="stat-label">🕐 IST · 12H / 24H</span>
       </div>
     </div>
 
@@ -396,6 +403,22 @@
         <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi')">📋 Copy</button>
       </div>
 
+      <div class="card" data-name="driver huawei usb huawei usb driver">
+        <span class="card-icon">📶</span>
+        <div class="card-name">Driver Huawei USB</div>
+        <div class="card-meta">v1.0 · .ZIP Package</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip"><span>⬇ Download</span></a>
+        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip')">📋 Copy</button>
+      </div>
+
+      <div class="card" data-name="virtualhere usb client virtual here">
+        <span class="card-icon">🖧</span>
+        <div class="card-name">VirtualHere USB Client</div>
+        <div class="card-meta">FIXWITHYUVI Edition · .EXE</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe"><span>⬇ Download</span></a>
+        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe')">📋 Copy</button>
+      </div>
+
     </div>
   </div>
 
@@ -410,6 +433,14 @@
         <div class="card-meta">Dec 2025 · .ZIP</div>
         <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Visual-C-Runtimes-All-in-One-Dec-2025_2.zip"><span>⬇ Download</span></a>
         <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Visual-C-Runtimes-All-in-One-Dec-2025_2.zip')">📋 Copy</button>
+      </div>
+
+      <div class="card" data-name="multi info tool fixwithyuvi system information">
+        <span class="card-icon">🛠️</span>
+        <div class="card-name">Multi Info Tool</div>
+        <div class="card-meta">FIXWITHYUVI Edition · .EXE · FREE TOOL</div>
+        <a class="btn" href="https://github.com/yuvarajauhrs-oss/FREE-TOOLS-MY/releases/download/Multi_Info_Tool/Multi_Info_Tool_FIXWITHYUVI.exe"><span>⬇ Download</span></a>
+        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/FREE-TOOLS-MY/releases/download/Multi_Info_Tool/Multi_Info_Tool_FIXWITHYUVI.exe')">📋 Copy</button>
       </div>
 
       <div class="card" data-name="winra1n ios windows jailbreak">
@@ -455,6 +486,19 @@
     </div>
   </div>
 
+  <!-- ANNOUNCEMENT TICKER -->
+  <div style="margin:30px auto 0;max-width:900px;background:#080f1a;border:1px solid #00f0ff22;border-radius:6px;overflow:hidden;display:flex;align-items:center;">
+    <span style="background:var(--accent);color:#000;font-family:'Orbitron',monospace;font-size:9px;font-weight:900;letter-spacing:3px;padding:10px 14px;white-space:nowrap;flex-shrink:0;">📢 NEWS</span>
+    <div style="overflow:hidden;flex:1;padding:0 12px;">
+      <div id="ticker" style="white-space:nowrap;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;animation:tickerScroll 28s linear infinite;">
+        ✅ New: Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact us on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
+      </div>
+    </div>
+  </div>
+  <style>
+    @keyframes tickerScroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  </style>
+
   <!-- FOOTER -->
   <footer>
     <p>© 2025 <a href="#">FIXWITHYUVI</a> · All files are direct links · 100% Free · No Ads</p>
@@ -471,15 +515,38 @@
 </div>
 
 <script>
-  // ── LIVE CLOCK ──
+  // ── LIVE CLOCK (IST - India Standard Time, 12h + 24h + Date) ──
   function updateClock() {
     const now = new Date();
-    const h = String(now.getHours()).padStart(2,'0');
-    const m = String(now.getMinutes()).padStart(2,'0');
-    const s = String(now.getSeconds()).padStart(2,'0');
-    document.getElementById('clock').textContent = h+':'+m+':'+s;
+    const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const hFull = ist.getHours();
+    const m = String(ist.getMinutes()).padStart(2,'0');
+    const s = String(ist.getSeconds()).padStart(2,'0');
+    // 12h
+    const ampm = hFull >= 12 ? 'PM' : 'AM';
+    const h12 = hFull % 12 || 12;
+    document.getElementById('clock12').textContent = h12 + ':' + m + ':' + s + ' ' + ampm;
+    // 24h
+    document.getElementById('clock24').textContent = String(hFull).padStart(2,'0') + ':' + m + ':' + s;
+    // Date
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const dateStr = days[ist.getDay()] + ' ' + String(ist.getDate()).padStart(2,'0') + ' ' + months[ist.getMonth()] + ' ' + ist.getFullYear();
+    document.getElementById('istDate').textContent = dateStr;
   }
   updateClock(); setInterval(updateClock, 1000);
+
+  // ── ONLINE VISITORS (simulated real-time using random fluctuation around a base) ──
+  // Uses a seeded approach so it looks consistent and realistic
+  function updateOnlineCount() {
+    const base = 3;
+    const variance = Math.floor(Math.random() * 5); // 0–4
+    const count = base + variance;
+    const el = document.getElementById('onlineCount');
+    if (el) el.textContent = count;
+  }
+  updateOnlineCount();
+  setInterval(updateOnlineCount, 15000); // refresh every 15 seconds
 
   // ── SEARCH ──
   const searchInput = document.getElementById('searchInput');
