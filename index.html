@@ -4,419 +4,344 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FIXWITHYUVI – Direct Download Files</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg: #050a0f;
-    --accent: #00f0ff;
-    --accent2: #ff6a00;
-    --green: #00ff88;
-    --yellow: #ffcc00;
-    --text: #cce8f0;
-    --muted: #4a7a8a;
-    --card: #0d1e2e;
-    --border: #0ff3;
-    --glow: 0 0 18px #00f0ff55, 0 0 40px #00f0ff22;
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --orange: #f0883e;
+    --text: #c9d1d9;
+    --muted: #6e7681;
+    --red: #f85149;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Exo 2', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
   }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 48px 48px;
-    animation: gridMove 20s linear infinite;
-    z-index: 0; pointer-events: none;
-  }
-  @keyframes gridMove { from { background-position: 0 0; } to { background-position: 48px 48px; } }
-  body::after {
-    content: ''; position: fixed; inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 0%, #00f0ff18 0%, transparent 70%);
-    z-index: 0; pointer-events: none;
-  }
-  .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-  /* SCAN LINE */
-  .scan-line {
-    position: fixed; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, #00f0ff33, transparent);
-    animation: scan 6s linear infinite;
-    pointer-events: none; z-index: 999;
-  }
-  @keyframes scan { from { top: -2px; } to { top: 100vh; } }
+  .wrapper { max-width: 1000px; margin: 0 auto; padding: 0 16px 60px; }
 
   /* HEADER */
-  header { text-align: center; padding: 48px 20px 24px; }
-  .logo-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #00f0ff22, #ff6a0011);
-    border: 1px solid var(--accent); border-radius: 4px;
-    padding: 4px 16px; font-family: 'Share Tech Mono', monospace;
-    font-size: 11px; color: var(--accent); letter-spacing: 4px;
-    text-transform: uppercase; margin-bottom: 16px;
-    animation: pulse 3s ease-in-out infinite;
+  header {
+    padding: 36px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    text-align: center;
   }
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 0 12px #00f0ff44; }
-    50% { box-shadow: 0 0 28px #00f0ff99; }
-  }
-  h1 {
-    font-family: 'Orbitron', monospace; font-weight: 900;
-    font-size: clamp(26px, 6vw, 56px); color: #fff;
-    text-shadow: 0 0 30px #00f0ff66;
-  }
-  h1 span { color: var(--accent); }
-  .tagline {
-    margin-top: 10px; font-family: 'Share Tech Mono', monospace;
-    font-size: 12px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase;
-  }
-  .divider { width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 22px auto 0; }
+  .logo { font-family: 'Roboto Mono', monospace; font-size: 64px; font-weight: 700; color: #fff; letter-spacing: 4px; }
+  .logo span { color: var(--accent); }
+  .tagline { color: var(--muted); font-size: 13px; margin-top: 6px; }
 
-  /* STATS BAR */
-  .stats-bar {
-    display: flex; justify-content: center; align-items: center;
-    gap: 24px; flex-wrap: wrap;
-    margin: 26px auto 0; padding: 18px 28px;
-    background: #080f1a; border: 1px solid #00f0ff33;
-    border-radius: 8px; max-width: 720px; position: relative; overflow: hidden;
+  /* TOP BAR */
+  .top-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
   }
-  .stats-bar::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    height: 2px; width: 100%;
-    background: linear-gradient(90deg, transparent, var(--accent), var(--green), transparent);
-    animation: shimmer 2.5s linear infinite;
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+    border: 1px solid;
   }
-  @keyframes shimmer { from { left: -100%; } to { left: 100%; } }
-  .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .stat-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
-  .stat-value { font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 700; color: var(--green); text-shadow: 0 0 10px #00ff8877; }
-  .stat-sep { width: 1px; height: 38px; background: #00f0ff18; }
-  .live-indicator { display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--green); letter-spacing: 2px; }
-  .live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: blink 1.2s ease-in-out infinite; }
-  @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.2;transform:scale(0.7)} }
-  .hits-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-  .hits-wrap img { height: 28px; border-radius: 4px; }
+  .badge-green { background: #1a3a2a; border-color: #2ea043; color: var(--green); }
+  .badge-blue  { background: #0d2340; border-color: #1f6feb; color: var(--accent); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 
-  /* SEARCH BAR */
-  .search-wrap {
-    margin: 30px auto 0; max-width: 680px; position: relative;
-  }
-  .search-wrap input {
-    width: 100%; padding: 14px 54px 14px 20px;
-    background: #0a1a2a; border: 1px solid #00f0ff44;
-    border-radius: 6px; color: #fff;
-    font-family: 'Share Tech Mono', monospace; font-size: 14px;
-    letter-spacing: 1px; outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .search-wrap input::placeholder { color: var(--muted); }
-  .search-wrap input:focus { border-color: var(--accent); box-shadow: var(--glow); }
-  .search-wrap .search-icon {
-    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-    font-size: 18px; color: var(--accent); pointer-events: none;
-  }
-  .no-results {
-    text-align: center; padding: 40px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 13px; color: var(--muted);
-    display: none;
-  }
-
-  /* CONTACT BAR */
-  .contact-bar {
-    display: flex; justify-content: center; align-items: center;
-    gap: 16px; flex-wrap: wrap; margin: 24px auto 0; max-width: 720px;
-  }
+  /* CONTACT */
+  .contact-bar { display: flex; gap: 8px; flex-wrap: wrap; }
   .contact-btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 10px 22px; border-radius: 5px;
-    font-family: 'Share Tech Mono', monospace; font-size: 12px;
-    letter-spacing: 2px; text-decoration: none; text-transform: uppercase;
-    transition: transform 0.2s, box-shadow 0.2s; font-weight: bold;
-  }
-  .contact-btn.whatsapp {
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    color: #fff; box-shadow: 0 0 16px #25d36644;
-  }
-  .contact-btn.whatsapp:hover { transform: translateY(-3px); box-shadow: 0 0 28px #25d36688; }
-  .contact-btn.telegram {
-    background: linear-gradient(135deg, #229ed9, #1a7fbf);
-    color: #fff; box-shadow: 0 0 16px #229ed944;
-  }
-  .contact-btn.telegram:hover { transform: translateY(-3px); box-shadow: 0 0 28px #229ed988; }
-  .contact-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
-
-  /* SECTION */
-  .section { margin-top: 44px; }
-  .section-title {
-    font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700;
-    letter-spacing: 5px; text-transform: uppercase; color: var(--accent2);
-    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
-  }
-  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent2), transparent); opacity: 0.4; }
-
-  /* GRID */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-
-  /* CARD */
-  .card {
-    background: var(--card); border: 1px solid #0ff2;
-    border-radius: 6px; padding: 20px 20px 16px;
-    position: relative; overflow: hidden;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    animation: fadeUp 0.5s ease both;
-  }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  .card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.10s}
-  .card:nth-child(3){animation-delay:.15s} .card:nth-child(4){animation-delay:.20s}
-  .card:nth-child(5){animation-delay:.25s} .card:nth-child(6){animation-delay:.30s}
-  .card:nth-child(7){animation-delay:.35s} .card:nth-child(8){animation-delay:.40s}
-  .card:nth-child(9){animation-delay:.45s}
-  .card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--glow); }
-  .card:hover::before { opacity: 1; }
-  .card.hidden { display: none; }
-
-  .card-icon { font-size: 24px; margin-bottom: 10px; display: block; }
-  .card-name {
-    font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700;
-    letter-spacing: 1.5px; color: #fff; text-transform: uppercase;
-    margin-bottom: 5px; line-height: 1.4;
-  }
-  .card-meta { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 16px; letter-spacing: 1px; }
-
-  /* DOWNLOAD BTN */
-  .btn {
     display: inline-flex; align-items: center; gap: 7px;
-    background: transparent; border: 1px solid var(--accent);
-    color: var(--accent); font-family: 'Share Tech Mono', monospace;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none; padding: 8px 16px; border-radius: 3px;
-    transition: color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;
-  }
-  .btn::before {
-    content: ''; position: absolute; inset: 0; background: var(--accent);
-    transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; z-index: 0;
-  }
-  .btn span { position: relative; z-index: 1; }
-  .btn:hover { color: #000; box-shadow: 0 0 20px var(--accent); }
-  .btn:hover::before { transform: scaleX(1); }
-
-  /* COPY BTN */
-  .copy-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: transparent; border: 1px solid #0ff3;
-    color: var(--muted); font-family: 'Share Tech Mono', monospace;
-    font-size: 10px; letter-spacing: 1px; cursor: pointer;
-    padding: 6px 12px; border-radius: 3px; margin-left: 8px;
-    transition: all 0.2s; vertical-align: middle;
-  }
-  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .copy-btn.copied { border-color: var(--green); color: var(--green); }
-
-  .btn-ext { border-color: var(--accent2); color: var(--accent2); }
-  .btn-ext::before { background: var(--accent2); }
-  .btn-ext:hover { box-shadow: 0 0 20px var(--accent2); }
-
-  /* SIGMA CARDS */
-  .card.sigma .card-name { color: var(--yellow); }
-  .card.sigma { border-color: #ffcc0022; }
-  .card.sigma:hover { border-color: var(--yellow); box-shadow: 0 0 18px #ffcc0044; }
-  .card.sigma .btn { border-color: var(--yellow); color: var(--yellow); }
-  .card.sigma .btn::before { background: var(--yellow); }
-  .card.sigma .btn:hover { box-shadow: 0 0 20px var(--yellow); color: #000; }
-  .card.sigma::before { background: linear-gradient(90deg, transparent, var(--yellow), transparent); }
-
-  /* BACK TO TOP */
-  #backTop {
-    position: fixed; bottom: 28px; right: 24px;
-    background: #0a1a2a; border: 1px solid var(--accent);
-    color: var(--accent); font-size: 20px; width: 44px; height: 44px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; opacity: 0; pointer-events: none;
-    transition: opacity 0.3s, box-shadow 0.3s; z-index: 888;
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    border: 1px solid; cursor: pointer; transition: opacity 0.15s;
     text-decoration: none;
   }
-  #backTop.visible { opacity: 1; pointer-events: all; }
-  #backTop:hover { box-shadow: var(--glow); }
+  .contact-btn:hover { opacity: 0.8; text-decoration: none; }
+  .btn-wa  { background: #1a3a2a; border-color: #2ea043; color: #3fb950; }
+  .btn-tg  { background: #0d2a3a; border-color: #1f6feb; color: var(--accent); }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom: 24px; }
+  .search-wrap input {
+    width: 100%; max-width: 480px;
+    padding: 8px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  /* CLOCK */
+  #clock {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 32px; }
+  .section-header {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px; margin-bottom: 12px;
+  }
+
+  /* TABLE LAYOUT */
+  .file-list { display: flex; flex-direction: column; gap: 2px; }
+  .file-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.15s;
+  }
+  .file-row:hover { border-color: #444c56; }
+  .file-row.hidden { display: none; }
+  .file-icon { font-size: 18px; text-align: center; }
+  .file-info {}
+  .file-name { font-weight: 500; color: #e6edf3; font-size: 13px; }
+  .file-meta { font-size: 11px; color: var(--muted); font-family: 'Roboto Mono', monospace; margin-top: 1px; }
+  .file-actions { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+
+  /* BUTTONS */
+  .btn-dl {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 600;
+    border: 1px solid #2ea043; background: #1a3a2a; color: var(--green);
+    text-decoration: none; transition: opacity 0.15s; white-space: nowrap;
+  }
+  .btn-dl:hover { opacity: 0.8; text-decoration: none; }
+  .btn-dl.ext { border-color: #d29922; background: #2e2100; color: var(--yellow); }
+
+  .btn-copy {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 10px; border-radius: 5px; font-size: 11px;
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    cursor: pointer; transition: all 0.15s; font-family: 'Roboto', sans-serif;
+    white-space: nowrap;
+  }
+  .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-copy.copied { border-color: var(--green); color: var(--green); }
+
+  /* NO RESULTS */
+  .no-results {
+    padding: 32px; text-align: center; color: var(--muted);
+    font-size: 13px; display: none;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    display: flex; align-items: center; margin: 16px 0 24px;
+  }
+  .ticker-label {
+    background: var(--accent); color: #000; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; padding: 8px 12px; white-space: nowrap; flex-shrink: 0;
+  }
+  .ticker-scroll {
+    padding: 0 12px; overflow: hidden; flex: 1;
+  }
+  .ticker-text {
+    font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--muted);
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+  }
+  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
   /* FOOTER */
   footer {
-    margin-top: 60px; text-align: center;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px; color: var(--muted); letter-spacing: 2px; padding-bottom: 24px;
+    border-top: 1px solid var(--border); padding-top: 20px; margin-top: 16px;
+    font-size: 11px; color: var(--muted); display: flex;
+    justify-content: space-between; flex-wrap: wrap; gap: 10px;
   }
-  footer a { color: var(--accent); text-decoration: none; }
-  .footer-social { display: flex; justify-content: center; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
-  .footer-social a {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; letter-spacing: 1px; text-decoration: none;
-    padding: 6px 14px; border-radius: 4px; transition: opacity 0.2s;
-  }
-  .footer-social a:hover { opacity: 0.8; }
-  .footer-social .wa { background: #25d36622; color: #25d366; border: 1px solid #25d36644; }
-  .footer-social .tg { background: #229ed922; color: #229ed9; border: 1px solid #229ed944; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--accent); }
 
-  @media (max-width: 480px) {
-    .grid { grid-template-columns: 1fr; }
-    h1 { font-size: 26px; }
-    .stats-bar { gap: 14px; padding: 14px; }
-    .stat-sep { display: none; }
-    .contact-bar { gap: 10px; }
+  @media (max-width: 600px) {
+    .file-row { grid-template-columns: 28px 1fr; }
+    .file-actions { grid-column: 2; }
+    .top-bar { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
-
-<div class="scan-line"></div>
-<a id="backTop" title="Back to top">↑</a>
-
 <div class="wrapper">
+
   <header>
-    <div class="logo-badge">⚡ Direct Download Portal</div>
-    <h1>FIX<span>WITH</span>YUVI</h1>
-    <p class="tagline">USB Drivers &amp; Tools — Free Download Hub</p>
-    <div class="divider"></div>
-
-    <!-- STATS BAR -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="live-indicator"><div class="live-dot"></div>LIVE</div>
-        <span class="stat-label">Status</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="hits-wrap">
-        <span class="stat-label">👁 Total Visitors</span>
-        <a href="https://hits.sh/yuvarajauhrs-oss.github.io/fixwithyuvi/" target="_blank">
-          <img src="https://hits.sh/yuvarajauhrs-oss.github.io/fixwithyuvi/.svg?style=flat-square&label=Visitors&color=00ff88&labelColor=050a0f" alt="Visitor Count"/>
-        </a>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item">
-        <span class="stat-value">13</span>
-        <span class="stat-label">📦 Files</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item">
-        <span class="stat-value" id="onlineCount" style="color:var(--accent2)">—</span>
-        <span class="stat-label">🟢 Online Now</span>
-      </div>
-      <div class="stat-sep"></div>
-      <div class="stat-item" style="align-items:center;">
-        <span id="clock12" style="font-family:'Orbitron',monospace;font-size:13px;color:var(--accent);font-weight:700;text-shadow:0 0 10px #00f0ff77;">--:--:-- --</span>
-        <span id="clock24" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px;">--:--:--</span>
-        <span id="istDate" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#4a6a7a;letter-spacing:1px;margin-top:1px;">-- --- ----</span>
-        <span class="stat-label">🕐 IST · 12H / 24H</span>
-      </div>
-    </div>
-
-    <!-- CONTACT BUTTONS -->
-    <div class="contact-bar">
-      <a class="contact-btn whatsapp" href="https://wa.me/919585656587" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp +91 95856 56587
-      </a>
-      <a class="contact-btn telegram" href="https://t.me/FixWithYuviOfficial" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        Telegram @FixWithYuviOfficial
-      </a>
-    </div>
-
-    <!-- SEARCH BAR -->
-    <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="🔍  Search drivers, tools..." autocomplete="off"/>
-      <span class="search-icon">🔍</span>
+    <div class="logo">FIX<span>WITH</span>YUVI</div>
+    <div class="tagline">USB Drivers &amp; Tools — Free Direct Download Hub</div>
+    <div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:'Roboto Mono',monospace;font-size:22px;color:var(--muted);font-weight:600;">IP:</span>
+      <span id="ip-val" style="font-family:'Roboto Mono',monospace;font-size:28px;font-weight:700;color:var(--accent);letter-spacing:2px;">Detecting...</span>
+      <button onclick="copyIP()" id="ip-copy-btn" style="padding:5px 14px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Roboto',sans-serif;font-size:14px;cursor:pointer;transition:all 0.15s;">📋 Copy</button>
     </div>
   </header>
 
-  <!-- NO RESULTS -->
-  <div class="no-results" id="noResults">😕 No files found. Try a different search!</div>
+  <div class="top-bar">
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+      <div class="badges">
+        <span class="badge badge-green"><span class="dot"></span> Live</span>
+        <span class="badge badge-blue">📦 14 Files</span>
+        <span class="badge badge-blue">🆓 100% Free</span>
+      </div>
+      <div id="clock">--:--:-- -- · IST</div>
+    </div>
+    <div class="contact-bar">
+      <a class="contact-btn btn-wa" href="https://wa.me/919585656587" target="_blank">💬 WhatsApp</a>
+      <a class="contact-btn btn-tg" href="https://t.me/FixWithYuviOfficial" target="_blank">✈️ Telegram</a>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="🔍  Search drivers, tools..." autocomplete="off"/>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">📢 NEWS</div>
+    <div class="ticker-scroll">
+      <span class="ticker-text">
+        ✅ UMT FADR Error Fix Tool added &nbsp;·&nbsp; ✅ Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <div id="noResults" class="no-results">😕 No files found. Try a different search!</div>
 
   <!-- USB DRIVERS -->
   <div class="section" data-section>
-    <div class="section-title">USB Drivers</div>
-    <div class="grid">
+    <div class="section-header">📁 USB Drivers</div>
+    <div class="file-list">
 
-      <div class="card" data-name="samsung android usb driver">
-        <span class="card-icon">📱</span>
-        <div class="card-name">Samsung Android USB Driver</div>
-        <div class="card-meta">v1.9.0.0 · .EXE · Official</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe')">📋 Copy</button>
+      <div class="file-row" data-name="samsung android usb driver">
+        <div class="file-icon">📱</div>
+        <div class="file-info">
+          <div class="file-name">Samsung Android USB Driver</div>
+          <div class="file-meta">v1.9.0.0 · .EXE · Official</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="oppo mtk qcom usb driver">
-        <span class="card-icon">🔌</span>
-        <div class="card-name">OPPO MTK QCOM USB Driver</div>
-        <div class="card-meta">v4.0.1.6 · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe')">📋 Copy</button>
+      <div class="file-row" data-name="oppo mtk qcom usb driver">
+        <div class="file-icon">🔌</div>
+        <div class="file-info">
+          <div class="file-name">OPPO MTK QCOM USB Driver</div>
+          <div class="file-meta">v4.0.1.6 · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="libusb win32 filter driver">
-        <span class="card-icon">🧩</span>
-        <div class="card-name">libusb-win32</div>
-        <div class="card-meta">v1.2.6.0 · Filter Driver · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe')">📋 Copy</button>
+      <div class="file-row" data-name="libusb win32 filter driver">
+        <div class="file-icon">🧩</div>
+        <div class="file-info">
+          <div class="file-name">libusb-win32</div>
+          <div class="file-meta">v1.2.6.0 · Filter Driver · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="usb redirector">
-        <span class="card-icon">🔄</span>
-        <div class="card-name">USB Redirector</div>
-        <div class="card-meta">v1.9.7 Customer · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe')">📋 Copy</button>
+      <div class="file-row" data-name="usb redirector">
+        <div class="file-icon">🔄</div>
+        <div class="file-info">
+          <div class="file-name">USB Redirector</div>
+          <div class="file-meta">v1.9.7 Customer · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="spd spreadtrum driver 77xx">
-        <span class="card-icon">📡</span>
-        <div class="card-name">SPD Spreadtrum Driver 77xx</div>
-        <div class="card-meta">.ZIP Package</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip')">📋 Copy</button>
+      <div class="file-row" data-name="spd spreadtrum driver 77xx">
+        <div class="file-icon">📡</div>
+        <div class="file-info">
+          <div class="file-name">SPD Spreadtrum Driver 77xx</div>
+          <div class="file-meta">.ZIP Package</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="adb driver 15 second installer">
-        <span class="card-icon">⚡</span>
-        <div class="card-name">ADB Driver</div>
-        <div class="card-meta">15 Second ADB Installer v1.5.6 · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe')">📋 Copy</button>
+      <div class="file-row" data-name="adb driver 15 second installer">
+        <div class="file-icon">⚡</div>
+        <div class="file-info">
+          <div class="file-name">ADB Driver</div>
+          <div class="file-meta">15 Second ADB Installer v1.5.6 · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="usbdk usb dk">
-        <span class="card-icon">🛡️</span>
-        <div class="card-name">USB DK</div>
-        <div class="card-meta">UsbDk v1.0.22 x64 · .MSI</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi')">📋 Copy</button>
+      <div class="file-row" data-name="usbdk usb dk">
+        <div class="file-icon">🛡️</div>
+        <div class="file-info">
+          <div class="file-name">USB DK</div>
+          <div class="file-meta">UsbDk v1.0.22 x64 · .MSI</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="driver huawei usb huawei usb driver">
-        <span class="card-icon">📶</span>
-        <div class="card-name">Driver Huawei USB</div>
-        <div class="card-meta">v1.0 · .ZIP Package</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip')">📋 Copy</button>
+      <div class="file-row" data-name="driver huawei usb huawei usb driver">
+        <div class="file-icon">📶</div>
+        <div class="file-info">
+          <div class="file-name">Driver Huawei USB</div>
+          <div class="file-meta">v1.0 · .ZIP Package</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="virtualhere usb client virtual here">
-        <span class="card-icon">🖧</span>
-        <div class="card-name">VirtualHere USB Client</div>
-        <div class="card-meta">FIXWITHYUVI Edition · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe')">📋 Copy</button>
+      <div class="file-row" data-name="virtualhere usb client virtual here">
+        <div class="file-icon">🖧</div>
+        <div class="file-info">
+          <div class="file-name">VirtualHere USB Client</div>
+          <div class="file-meta">FIXWITHYUVI Edition · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe')">📋 Copy</button>
+        </div>
       </div>
 
     </div>
@@ -424,31 +349,55 @@
 
   <!-- RUNTIMES & TOOLS -->
   <div class="section" data-section>
-    <div class="section-title">Runtimes &amp; System Tools</div>
-    <div class="grid">
+    <div class="section-header">⚙️ Runtimes &amp; System Tools</div>
+    <div class="file-list">
 
-      <div class="card" data-name="visual c++ runtimes all in one">
-        <span class="card-icon">⚙️</span>
-        <div class="card-name">Visual C++ Runtimes All-in-One</div>
-        <div class="card-meta">Dec 2025 · .ZIP</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe')">📋 Copy</button>
+      <div class="file-row" data-name="visual c++ runtimes all in one">
+        <div class="file-icon">⚙️</div>
+        <div class="file-info">
+          <div class="file-name">Visual C++ Runtimes All-in-One</div>
+          <div class="file-meta">Dec 2025 · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="multi info tool fixwithyuvi system information">
-        <span class="card-icon">🛠️</span>
-        <div class="card-name">Multi Info Tool</div>
-        <div class="card-meta">FIXWITHYUVI Edition · .EXE · FREE TOOL</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.exe')">📋 Copy</button>
+      <div class="file-row" data-name="multi info tool fixwithyuvi system information">
+        <div class="file-icon">🛠️</div>
+        <div class="file-info">
+          <div class="file-name">Multi Info Tool</div>
+          <div class="file-meta">FIXWITHYUVI Edition · .EXE · FREE TOOL</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card" data-name="winra1n ios windows jailbreak">
-        <span class="card-icon">🍎</span>
-        <div class="card-name">WinRa1n 2.1</div>
-        <div class="card-meta">iOS Tool for Windows · .EXE</div>
-        <a class="btn" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe')">📋 Copy</button>
+      <div class="file-row" data-name="umt fadr error fix tool umt_fadr">
+        <div class="file-icon">🔧</div>
+        <div class="file-info">
+          <div class="file-name">UMT FADR Error Fix Tool</div>
+          <div class="file-meta">UMT_FADR · .EXE · FREE TOOL</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe')">📋 Copy</button>
+        </div>
+      </div>
+
+      <div class="file-row" data-name="winra1n ios windows jailbreak">
+        <div class="file-icon">🍎</div>
+        <div class="file-info">
+          <div class="file-name">WinRa1n 2.1</div>
+          <div class="file-meta">iOS Tool for Windows · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe')">📋 Copy</button>
+        </div>
       </div>
 
     </div>
@@ -456,125 +405,142 @@
 
   <!-- SIGMA & NETWORK TOOLS -->
   <div class="section" data-section>
-    <div class="section-title">Sigma &amp; Network Tools</div>
-    <div class="grid">
+    <div class="section-header">🔑 Sigma &amp; Network Tools</div>
+    <div class="file-list">
 
-      <div class="card sigma" data-name="sigma plus software sigmakey">
-        <span class="card-icon">🔑</span>
-        <div class="card-name">Sigma Plus Software</div>
-        <div class="card-meta">v1.01.10 · .EXE · sigmakey.com</div>
-        <a class="btn btn-ext" href="https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe')">📋 Copy</button>
+      <div class="file-row" data-name="sigma plus software sigmakey">
+        <div class="file-icon">🔑</div>
+        <div class="file-info">
+          <div class="file-name">Sigma Plus Software</div>
+          <div class="file-meta">v1.01.10 · .EXE · sigmakey.com</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl ext" href="https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card sigma" data-name="usb over network client">
-        <span class="card-icon">🌐</span>
-        <div class="card-name">USB Over Network Client</div>
-        <div class="card-meta">64-bit · .MSI</div>
-        <a class="btn btn-ext" href="https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi')">📋 Copy</button>
+      <div class="file-row" data-name="usb over network client">
+        <div class="file-icon">🌐</div>
+        <div class="file-info">
+          <div class="file-name">USB Over Network Client</div>
+          <div class="file-meta">64-bit · .MSI</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl ext" href="https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi')">📋 Copy</button>
+        </div>
       </div>
 
-      <div class="card sigma" data-name="radmin vpn virtual network">
-        <span class="card-icon">🔒</span>
-        <div class="card-name">Radmin VPN</div>
-        <div class="card-meta">v2.0.4899.9 · .EXE · GitHub Hosted</div>
-        <a class="btn btn-ext" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe"><span>⬇ Download</span></a>
-        <button class="copy-btn" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe')">📋 Copy</button>
+      <div class="file-row" data-name="radmin vpn virtual network">
+        <div class="file-icon">🔒</div>
+        <div class="file-info">
+          <div class="file-name">Radmin VPN</div>
+          <div class="file-meta">v2.0.4899.9 · .EXE · GitHub Hosted</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl ext" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe')">📋 Copy</button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ANNOUNCEMENT TICKER -->
-  <div style="margin:30px auto 0;max-width:900px;background:#080f1a;border:1px solid #00f0ff22;border-radius:6px;overflow:hidden;display:flex;align-items:center;">
-    <span style="background:var(--accent);color:#000;font-family:'Orbitron',monospace;font-size:9px;font-weight:900;letter-spacing:3px;padding:10px 14px;white-space:nowrap;flex-shrink:0;">📢 NEWS</span>
-    <div style="overflow:hidden;flex:1;padding:0 12px;">
-      <div id="ticker" style="white-space:nowrap;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;animation:tickerScroll 28s linear infinite;">
-        ✅ New: Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact us on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
-      </div>
-    </div>
-  </div>
-  <style>
-    @keyframes tickerScroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-  </style>
 
-  <!-- FOOTER -->
+
   <footer>
-    <p>© 2025 <a href="#">FIXWITHYUVI</a> · All files are direct links · 100% Free · No Ads</p>
-    <div class="footer-social">
-      <a class="wa" href="https://wa.me/919585656587" target="_blank">
-        💬 WhatsApp: +91 95856 56587
-      </a>
-      <a class="tg" href="https://t.me/FixWithYuviOfficial" target="_blank">
-        ✈️ Telegram: @FixWithYuviOfficial
-      </a>
-    </div>
-    <p style="margin-top:10px;font-size:9px;color:#2a4a5a;">Hosted via GitHub Pages · Visitor counter by hits.sh</p>
+    <span>© 2025 FIXWITHYUVI · All files are direct links · 100% Free · No Ads</span>
+    <span>
+      <a href="https://wa.me/919585656587" target="_blank">💬 WhatsApp</a> &nbsp;·&nbsp;
+      <a href="https://t.me/FixWithYuviOfficial" target="_blank">✈️ Telegram</a>
+    </span>
   </footer>
+
 </div>
 
 <script>
-  // ── LIVE CLOCK (IST - India Standard Time, 12h + 24h + Date) ──
+  // Clock
   function updateClock() {
     const now = new Date();
     const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-    const hFull = ist.getHours();
-    const m = String(ist.getMinutes()).padStart(2,'0');
-    const s = String(ist.getSeconds()).padStart(2,'0');
-    // 12h
-    const ampm = hFull >= 12 ? 'PM' : 'AM';
-    const h12 = hFull % 12 || 12;
-    document.getElementById('clock12').textContent = h12 + ':' + m + ':' + s + ' ' + ampm;
-    // 24h
-    document.getElementById('clock24').textContent = String(hFull).padStart(2,'0') + ':' + m + ':' + s;
-    // Date
+    const h = ist.getHours(), m = ist.getMinutes(), s = ist.getSeconds();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = String(h % 12 || 12).padStart(2,'0');
+    const mm = String(m).padStart(2,'0');
+    const ss = String(s).padStart(2,'0');
     const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const dateStr = days[ist.getDay()] + ' ' + String(ist.getDate()).padStart(2,'0') + ' ' + months[ist.getMonth()] + ' ' + ist.getFullYear();
-    document.getElementById('istDate').textContent = dateStr;
+    const dayName = days[ist.getDay()];
+    const date = String(ist.getDate()).padStart(2,'0');
+    const month = months[ist.getMonth()];
+    const year = ist.getFullYear();
+    document.getElementById('clock').textContent = dayName + ', ' + date + ' ' + month + ' ' + year + '  ·  ' + h12 + ':' + mm + ':' + ss + ' ' + ampm + ' IST';
   }
-  updateClock(); setInterval(updateClock, 1000);
+  updateClock();
+  setInterval(updateClock, 1000);
 
-  // ── ONLINE VISITORS (simulated real-time using random fluctuation around a base) ──
-  // Uses a seeded approach so it looks consistent and realistic
-  function updateOnlineCount() {
-    const base = 3;
-    const variance = Math.floor(Math.random() * 5); // 0–4
-    const count = base + variance;
-    const el = document.getElementById('onlineCount');
-    if (el) el.textContent = count;
-  }
-  updateOnlineCount();
-  setInterval(updateOnlineCount, 15000); // refresh every 15 seconds
-
-  // ── SEARCH ──
-  const searchInput = document.getElementById('searchInput');
-  const noResults = document.getElementById('noResults');
-
-  searchInput.addEventListener('input', function () {
+  // Search
+  document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.card');
+    const rows = document.querySelectorAll('.file-row');
     const sections = document.querySelectorAll('[data-section]');
-    let totalVisible = 0;
-
-    cards.forEach(card => {
-      const name = card.getAttribute('data-name') || '';
-      const match = !q || name.includes(q);
-      card.classList.toggle('hidden', !match);
-      if (match) totalVisible++;
+    let total = 0;
+    rows.forEach(row => {
+      const match = !q || (row.getAttribute('data-name') || '').includes(q);
+      row.classList.toggle('hidden', !match);
+      if (match) total++;
     });
-
-    // Hide section titles if all cards in section are hidden
     sections.forEach(section => {
-      const visible = section.querySelectorAll('.card:not(.hidden)').length;
-      section.style.display = visible === 0 ? 'none' : '';
+      const vis = section.querySelectorAll('.file-row:not(.hidden)').length;
+      section.style.display = vis === 0 ? 'none' : '';
     });
-
-    noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+    document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
   });
 
-  // ── COPY LINK ──
+  // Find My IP
+  var currentIP = '';
+
+  function fillIP(ip) {
+    currentIP = ip || '';
+    document.getElementById('ip-val').textContent = currentIP || 'Unavailable';
+  }
+
+  function fetchIP() {
+    document.getElementById('ip-val').textContent = 'Detecting...';
+    fetch('https://api.ipify.org?format=json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ip) throw new Error('no ip');
+        fillIP(d.ip);
+      })
+      .catch(function(){
+        return fetch('https://api64.ipify.org?format=json')
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if (!d.ip) throw new Error('no ip');
+            fillIP(d.ip);
+          });
+      })
+      .catch(function(){
+        document.getElementById('ip-val').textContent = 'Unavailable';
+      });
+  }
+
+  function refreshIP() { fetchIP(); }
+
+  function copyIP() {
+    if (!currentIP) return;
+    navigator.clipboard.writeText(currentIP).then(function(){
+      var btn = document.getElementById('ip-copy-btn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(function(){ btn.textContent = '📋 Copy IP'; }, 2000);
+    });
+  }
+
+  fetchIP();
+
+  // Copy
   function copyLink(btn, url) {
     navigator.clipboard.writeText(url).then(() => {
       btn.textContent = '✅ Copied!';
@@ -582,14 +548,6 @@
       setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
     });
   }
-
-  // ── BACK TO TOP ──
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
-    backTop.classList.toggle('visible', window.scrollY > 300);
-  });
-  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
-
 </body>
 </html>
