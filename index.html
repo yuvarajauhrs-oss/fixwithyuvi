@@ -31,7 +31,6 @@
 
   .wrapper { max-width: 1000px; margin: 0 auto; padding: 0 16px 60px; }
 
-  /* HEADER */
   header {
     padding: 36px 0 24px;
     border-bottom: 1px solid var(--border);
@@ -42,7 +41,6 @@
   .logo span { color: var(--accent); }
   .tagline { color: var(--muted); font-size: 13px; margin-top: 6px; }
 
-  /* TOP BAR */
   .top-bar {
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
@@ -57,7 +55,6 @@
   .badge-blue  { background: #0d2340; border-color: #1f6feb; color: var(--accent); }
   .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 
-  /* CONTACT */
   .contact-bar { display: flex; gap: 8px; flex-wrap: wrap; }
   .contact-btn {
     display: inline-flex; align-items: center; gap: 7px;
@@ -69,7 +66,6 @@
   .btn-wa  { background: #1a3a2a; border-color: #2ea043; color: #3fb950; }
   .btn-tg  { background: #0d2a3a; border-color: #1f6feb; color: var(--accent); }
 
-  /* SEARCH */
   .search-wrap { margin-bottom: 24px; }
   .search-wrap input {
     width: 100%; max-width: 480px;
@@ -86,7 +82,6 @@
   .search-wrap input:focus { border-color: var(--accent); }
   .search-wrap input::placeholder { color: var(--muted); }
 
-  /* CLOCK */
   #clock {
     font-family: 'Roboto Mono', monospace;
     font-size: 22px;
@@ -95,7 +90,6 @@
     white-space: nowrap;
   }
 
-  /* SECTION */
   .section { margin-bottom: 32px; }
   .section-header {
     font-size: 12px; font-weight: 700; text-transform: uppercase;
@@ -104,7 +98,6 @@
     padding-bottom: 8px; margin-bottom: 12px;
   }
 
-  /* TABLE LAYOUT */
   .file-list { display: flex; flex-direction: column; gap: 2px; }
   .file-row {
     display: grid;
@@ -120,12 +113,10 @@
   .file-row:hover { border-color: #444c56; }
   .file-row.hidden { display: none; }
   .file-icon { font-size: 18px; text-align: center; }
-  .file-info {}
   .file-name { font-weight: 500; color: #e6edf3; font-size: 13px; }
   .file-meta { font-size: 11px; color: var(--muted); font-family: 'Roboto Mono', monospace; margin-top: 1px; }
   .file-actions { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
 
-  /* BUTTONS */
   .btn-dl {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 600;
@@ -134,6 +125,7 @@
   }
   .btn-dl:hover { opacity: 0.8; text-decoration: none; }
   .btn-dl.ext { border-color: #d29922; background: #2e2100; color: var(--yellow); }
+  .btn-dl.site { border-color: #58a6ff; background: #0d2340; color: var(--accent); }
 
   .btn-copy {
     display: inline-flex; align-items: center; gap: 4px;
@@ -145,13 +137,11 @@
   .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
   .btn-copy.copied { border-color: var(--green); color: var(--green); }
 
-  /* NO RESULTS */
   .no-results {
     padding: 32px; text-align: center; color: var(--muted);
     font-size: 13px; display: none;
   }
 
-  /* TICKER */
   .ticker-wrap {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 6px; overflow: hidden;
@@ -161,18 +151,14 @@
     background: var(--accent); color: #000; font-size: 10px; font-weight: 700;
     letter-spacing: 1px; padding: 8px 12px; white-space: nowrap; flex-shrink: 0;
   }
-  .ticker-scroll {
-    padding: 0 12px; overflow: hidden; flex: 1;
-  }
+  .ticker-scroll { padding: 0 12px; overflow: hidden; flex: 1; }
   .ticker-text {
     font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--muted);
-    white-space: nowrap;
-    display: inline-block;
+    white-space: nowrap; display: inline-block;
     animation: scroll 30s linear infinite;
   }
   @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--border); padding-top: 20px; margin-top: 16px;
     font-size: 11px; color: var(--muted); display: flex;
@@ -205,7 +191,7 @@
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
       <div class="badges">
         <span class="badge badge-green"><span class="dot"></span> Live</span>
-        <span class="badge badge-blue">📦 14 Files</span>
+        <span class="badge badge-blue">📦 17 Files</span>
         <span class="badge badge-blue">🆓 100% Free</span>
       </div>
       <div id="clock">--:--:-- -- · IST</div>
@@ -224,7 +210,7 @@
     <div class="ticker-label">📢 NEWS</div>
     <div class="ticker-scroll">
       <span class="ticker-text">
-        ✅ UMT FADR Error Fix Tool added &nbsp;·&nbsp; ✅ Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
+        ✅ UnlockTool page added &nbsp;·&nbsp; ✅ Android Multi Tool v1.3.5.5 added &nbsp;·&nbsp; ✅ Minimal ADB Fastboot v1.4.3 added &nbsp;·&nbsp; ✅ UMT FADR Error Fix Tool added &nbsp;·&nbsp; ✅ Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
       </span>
     </div>
   </div>
@@ -308,6 +294,18 @@
         </div>
       </div>
 
+      <div class="file-row" data-name="minimal adb fastboot adb fastboot minimal">
+        <div class="file-icon">⚡</div>
+        <div class="file-info">
+          <div class="file-name">Minimal ADB Fastboot</div>
+          <div class="file-meta">v1.4.3 · .EXE · GitHub Hosted</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe')">📋 Copy</button>
+        </div>
+      </div>
+
       <div class="file-row" data-name="usbdk usb dk">
         <div class="file-icon">🛡️</div>
         <div class="file-info">
@@ -388,6 +386,8 @@
         </div>
       </div>
 
+
+
       <div class="file-row" data-name="winra1n ios windows jailbreak">
         <div class="file-icon">🍎</div>
         <div class="file-info">
@@ -447,7 +447,37 @@
     </div>
   </div>
 
+  <!-- UNLOCK TOOLS -->
+  <div class="section" data-section>
+    <div class="section-header">🔓 Unlock Tools</div>
+    <div class="file-list">
 
+      <div class="file-row" data-name="a android multi tool amt">
+        <div class="file-icon">🤖</div>
+        <div class="file-info">
+          <div class="file-name">A</div>
+          <div class="file-meta">v1.3.5.5 · .EXE</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl ext" href="https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe">⬇ Download</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe')">📋 Copy</button>
+        </div>
+      </div>
+
+      <div class="file-row" data-name="unlocktool unlock tool gsm flash repair">
+        <div class="file-icon">🔓</div>
+        <div class="file-info">
+          <div class="file-name">UnlockTool</div>
+          <div class="file-meta">Official Site · file.unlocktool.net</div>
+        </div>
+        <div class="file-actions">
+          <a class="btn-dl site" href="https://file.unlocktool.net/" target="_blank">🌐 Visit Page</a>
+          <button class="btn-copy" onclick="copyLink(this,'https://file.unlocktool.net/')">📋 Copy</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <footer>
     <span>© 2025 FIXWITHYUVI · All files are direct links · 100% Free · No Ads</span>
@@ -460,7 +490,6 @@
 </div>
 
 <script>
-  // Clock
   function updateClock() {
     const now = new Date();
     const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
@@ -480,7 +509,6 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  // Search
   document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase().trim();
     const rows = document.querySelectorAll('.file-row');
@@ -498,49 +526,28 @@
     document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
   });
 
-  // Find My IP
   var currentIP = '';
-
   function fillIP(ip) {
     currentIP = ip || '';
     document.getElementById('ip-val').textContent = currentIP || 'Unavailable';
   }
-
   function fetchIP() {
     document.getElementById('ip-val').textContent = 'Detecting...';
     fetch('https://api.ipify.org?format=json')
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (!d.ip) throw new Error('no ip');
-        fillIP(d.ip);
-      })
-      .catch(function(){
-        return fetch('https://api64.ipify.org?format=json')
-          .then(function(r){ return r.json(); })
-          .then(function(d){
-            if (!d.ip) throw new Error('no ip');
-            fillIP(d.ip);
-          });
-      })
-      .catch(function(){
-        document.getElementById('ip-val').textContent = 'Unavailable';
-      });
+      .then(r => r.json()).then(d => { if (!d.ip) throw new Error(); fillIP(d.ip); })
+      .catch(() => fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => { if (!d.ip) throw new Error(); fillIP(d.ip); }))
+      .catch(() => { document.getElementById('ip-val').textContent = 'Unavailable'; });
   }
-
-  function refreshIP() { fetchIP(); }
-
   function copyIP() {
     if (!currentIP) return;
-    navigator.clipboard.writeText(currentIP).then(function(){
+    navigator.clipboard.writeText(currentIP).then(() => {
       var btn = document.getElementById('ip-copy-btn');
       btn.textContent = '✅ Copied!';
-      setTimeout(function(){ btn.textContent = '📋 Copy IP'; }, 2000);
+      setTimeout(() => { btn.textContent = '📋 Copy IP'; }, 2000);
     });
   }
-
   fetchIP();
 
-  // Copy
   function copyLink(btn, url) {
     navigator.clipboard.writeText(url).then(() => {
       btn.textContent = '✅ Copied!';
