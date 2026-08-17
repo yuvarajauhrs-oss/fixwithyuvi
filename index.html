@@ -175,6 +175,26 @@
   .btn-copy:hover{border-color:var(--copper);color:var(--copper-light);}
   .btn-copy.copied{border-color:var(--ok);color:var(--ok);}
 
+  .btn-view-img{
+    display:inline-flex;align-items:center;gap:4px;padding:7px 11px;border-radius:6px;
+    font-size:11px;border:1px solid #6b4520;background:#2a1d10;color:var(--copper-light);
+    cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;white-space:nowrap;
+  }
+  .btn-view-img:hover{opacity:.8;}
+
+  .img-modal{
+    display:none;position:fixed;inset:0;z-index:999;
+    background:rgba(10,8,4,.86);align-items:center;justify-content:center;padding:24px;
+  }
+  .img-modal.open{display:flex;}
+  .img-modal .img-modal-inner{position:relative;max-width:min(92vw,720px);max-height:88vh;}
+  .img-modal img{max-width:100%;max-height:88vh;border-radius:10px;border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,.5);display:block;}
+  .img-modal-close{
+    position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:50%;
+    background:var(--copper);color:#1a1206;border:none;font-size:16px;font-weight:700;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+
   .no-results,.loading-msg{padding:36px;text-align:center;color:var(--muted);font-size:13px;}
 
   footer{
@@ -254,6 +274,13 @@
 
 </div>
 
+<div class="img-modal" id="imgModal" onclick="if(event.target===this)closeImageModal()">
+  <div class="img-modal-inner">
+    <button class="img-modal-close" onclick="closeImageModal()">✕</button>
+    <img id="imgModalPic" src="" alt="Preview"/>
+  </div>
+</div>
+
 <script>
   function updateClock(){
     const now=new Date();
@@ -292,6 +319,18 @@
       setTimeout(()=>{btn.textContent='📋 Copy'; btn.classList.remove('copied');},2000);
     });
   }
+
+  function openImageModal(url){
+    document.getElementById('imgModalPic').src = url;
+    document.getElementById('imgModal').classList.add('open');
+  }
+  function closeImageModal(){
+    document.getElementById('imgModal').classList.remove('open');
+    document.getElementById('imgModalPic').src = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeImageModal();
+  });
 
   function btnLabel(type){ return type==='site' ? '🌐 Visit Page' : '⬇ Download'; }
   function btnClass(type){ return type==='ext' ? 'btn-dl ext' : type==='site' ? 'btn-dl site' : 'btn-dl'; }
@@ -355,6 +394,7 @@
         <div class="file-actions">
           <a class="${btnClass(file.type)}" href="${file.url}"${btnTarget(file.type)}>${btnLabel(file.type)}</a>
           <button class="btn-copy" onclick="copyLink(this,'${(file.url||'').replace(/'/g,"\\'")}')">📋 Copy</button>
+          ${file.image ? `<button class="btn-view-img" onclick="openImageModal('${(file.image||'').replace(/'/g,"\\'")}')">🖼️ View Image</button>` : ''}
         </div>
       </div>`;
   }
