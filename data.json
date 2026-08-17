@@ -157,33 +157,6 @@
       ]
     },
     {
-      "id": "unlock-tools",
-      "title": "🔓 Unlock Tools",
-      "files": [
-        {
-          "icon": "🤖",
-          "name": "Android Multi Tool",
-          "meta": "v1.3.5.8 · .EXE",
-          "url": "https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.8.exe",
-          "type": "ext"
-        },
-        {
-          "icon": "🔓",
-          "name": "SamFw FRP Tool",
-          "meta": "v3.0 · .ZIP · GitHub Hosted",
-          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip",
-          "type": "dl"
-        },
-        {
-          "icon": "🔓",
-          "name": "UnlockTool",
-          "meta": "Official Site · file.unlocktool.net",
-          "url": "https://file.unlocktool.net/",
-          "type": "site"
-        }
-      ]
-    },
-    {
       "id": "section-1786968265033",
       "title": "📁TOOLS",
       "files": [
@@ -199,6 +172,13 @@
           "name": "InstallFixer ",
           "meta": "The-error-code-is-2502-FIX-",
           "url": "https://github.com/fixwithyuvi/The-error-code-is-2502-FIX-TOOL-CMD/releases/download/InstallFixer.exe/InstallFixer.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "📄",
+          "name": "SamFw FRP Tool",
+          "meta": "v3.0 · .ZIP · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip",
           "type": "dl"
         }
       ]
