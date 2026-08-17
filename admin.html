@@ -45,7 +45,11 @@
   .section-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg);gap:10px;flex-wrap:wrap;}
   .section-head input{font-weight:700;color:#fff;background:transparent;border:none;font-size:14px;padding:2px 0;font-family:'Space Grotesk',sans-serif;}
   .move-group{display:flex;gap:4px;}
-  .file-item{display:grid;grid-template-columns:auto 1fr 1fr 2fr 90px auto;gap:8px;padding:10px 16px;border-top:1px solid var(--border);align-items:center;}
+  .file-item{display:grid;grid-template-columns:auto 40px 1fr 1fr 2fr 90px auto;gap:8px;padding:10px 16px;border-top:1px solid var(--border);align-items:center;}
+  .icon-cell{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .icon-preview{width:32px;height:32px;border-radius:7px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;overflow:hidden;}
+  .icon-preview img{width:100%;height:100%;object-fit:cover;}
+  .icon-cell button{padding:2px 6px;font-size:9px;}
   .file-item input,.file-item select{font-size:12px;padding:7px 9px;}
   .muted{color:var(--muted);font-size:11px;}
   .status{padding:12px 16px;border-radius:8px;font-size:12px;margin-bottom:16px;display:none;font-family:'JetBrains Mono',monospace;}
@@ -100,9 +104,15 @@
   </div>
 
   <div class="card">
-    <label style="margin-top:0">Site Logo Filename</label>
-    <input id="siteLogoField" placeholder="logo.png" onchange="dataObj.site=dataObj.site||{}; dataObj.site.logoUrl=this.value"/>
-    <p class="muted" style="margin-top:6px">Upload your logo image (e.g. logo.png, square works best) to the same repo folder as index.html, then put its filename here.</p>
+    <label style="margin-top:0">Site Logo</label>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img id="logoPreview" src="" alt="" style="width:52px;height:52px;border-radius:12px;object-fit:cover;border:1px solid var(--border);background:var(--bg);display:none;"/>
+      <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="uploadLogo(this)"/>
+      <button class="btn-ghost" onclick="document.getElementById('logoFileInput').click()">📷 Upload New Logo</button>
+      <span id="logoUploadStatus" class="muted"></span>
+    </div>
+    <label>Logo path (auto-filled after upload)</label>
+    <input id="siteLogoField" placeholder="logo.png" onchange="dataObj.site=dataObj.site||{}; dataObj.site.logoUrl=this.value; updateLogoPreview();"/>
     <label>Site Name</label>
     <input id="siteNameField" placeholder="FIXWITHYUVI" onchange="dataObj.site=dataObj.site||{}; dataObj.site.name=this.value"/>
     <label>Tagline</label>
@@ -158,8 +168,8 @@
     el.textContent = msg;
   }
 
-  async function ghRequest(method, body){
-    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${DATA_PATH}?ref=${GITHUB_BRANCH}`;
+  async function ghRequest(path, method, body){
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`;
     const res = await fetch(url, {
       method: method || 'GET',
       headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' },
@@ -172,10 +182,31 @@
     return res.json();
   }
 
+  function readFileAsBase64(file){
+    return new Promise((resolve,reject)=>{
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadImageToGithub(path, file){
+    if(file.size > 1024*1024){
+      throw new Error('Image too large (' + Math.round(file.size/1024) + 'KB). Keep it under 1MB.');
+    }
+    const base64 = await readFileAsBase64(file);
+    let sha;
+    try{ const existing = await ghRequest(path, 'GET'); sha = existing.sha; }catch(e){ /* new file, no sha needed */ }
+    const body = { message: 'Upload ' + path + ' via admin panel', content: base64, branch: GITHUB_BRANCH };
+    if(sha) body.sha = sha;
+    return ghRequest(path, 'PUT', body);
+  }
+
   async function loadData(manual){
     showStatus('Loading data.json from GitHub…', 'info');
     try{
-      const file = await ghRequest('GET');
+      const file = await ghRequest(DATA_PATH, 'GET');
       fileSha = file.sha;
       const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
       dataObj = JSON.parse(decoded);
@@ -183,6 +214,7 @@
       document.getElementById('siteLogoField').value = dataObj.site.logoUrl || '';
       document.getElementById('siteNameField').value = dataObj.site.name || '';
       document.getElementById('siteTaglineField').value = dataObj.site.tagline || '';
+      updateLogoPreview();
       renderSections();
       showStatus(manual ? '✅ Reloaded latest data from GitHub.' : '✅ Loaded. Ready to edit.', 'ok');
     }catch(e){
@@ -195,11 +227,53 @@
     try{
       const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataObj, null, 2))));
       const body = { message: 'Update links via admin panel', content: content, sha: fileSha, branch: GITHUB_BRANCH };
-      const result = await ghRequest('PUT', body);
+      const result = await ghRequest(DATA_PATH, 'PUT', body);
       fileSha = result.content.sha;
       showStatus('✅ Saved! Live on the site in a few seconds (GitHub Pages redeploy).', 'ok');
     }catch(e){
       showStatus('❌ Save failed: ' + e.message, 'err');
+    }
+  }
+
+  function updateLogoPreview(){
+    const path = document.getElementById('siteLogoField').value;
+    const img = document.getElementById('logoPreview');
+    if(path){ img.src = path + '?_=' + Date.now(); img.style.display = 'inline-block'; }
+    else { img.style.display = 'none'; }
+  }
+
+  async function uploadLogo(inputEl){
+    const file = inputEl.files[0];
+    if(!file) return;
+    const statusSpan = document.getElementById('logoUploadStatus');
+    statusSpan.textContent = 'Uploading…';
+    try{
+      const ext = (file.name.split('.').pop() || 'png').toLowerCase();
+      const path = 'assets/logo.' + ext;
+      await uploadImageToGithub(path, file);
+      dataObj.site = dataObj.site || {};
+      dataObj.site.logoUrl = path;
+      document.getElementById('siteLogoField').value = path;
+      updateLogoPreview();
+      statusSpan.textContent = '✅ Uploaded — click Save & Publish to go live';
+    }catch(e){
+      statusSpan.textContent = '❌ ' + e.message;
+    }
+  }
+
+  async function uploadFileIcon(sIdx, fIdx, inputEl){
+    const file = inputEl.files[0];
+    if(!file) return;
+    showStatus('Uploading icon…', 'info');
+    try{
+      const ext = (file.name.split('.').pop() || 'png').toLowerCase();
+      const path = 'assets/icons/' + Date.now() + '.' + ext;
+      await uploadImageToGithub(path, file);
+      dataObj.sections[sIdx].files[fIdx].icon = path;
+      renderSections();
+      showStatus('✅ Icon uploaded — click Save & Publish to go live', 'ok');
+    }catch(e){
+      showStatus('❌ Icon upload failed: ' + e.message, 'err');
     }
   }
 
@@ -232,6 +306,11 @@
             <button class="btn-move" title="Move up" onclick="moveFile(${sIdx},${fIdx},-1)" ${fIdx===0?'disabled':''}>▲</button>
             <button class="btn-move" title="Move down" onclick="moveFile(${sIdx},${fIdx},1)" ${fIdx===section.files.length-1?'disabled':''}>▼</button>
           </div>
+          <div class="icon-cell">
+            <div class="icon-preview">${iconPreviewHTML(file.icon)}</div>
+            <input type="file" accept="image/*" style="display:none" id="iconFile-${sIdx}-${fIdx}" onchange="uploadFileIcon(${sIdx},${fIdx},this)"/>
+            <button class="btn-ghost" onclick="document.getElementById('iconFile-${sIdx}-${fIdx}').click()">📷</button>
+          </div>
           <input value="${escapeAttr(file.name)}" placeholder="Name" onchange="updateFile(${sIdx},${fIdx},'name',this.value)"/>
           <input value="${escapeAttr(file.meta)}" placeholder="Meta (version · type)" onchange="updateFile(${sIdx},${fIdx},'meta',this.value)"/>
           <input value="${escapeAttr(file.url)}" placeholder="Download URL" onchange="updateFile(${sIdx},${fIdx},'url',this.value)"/>
@@ -249,6 +328,11 @@
   }
 
   function escapeAttr(str){ return (str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+  function isImagePath(str){ return !!str && /\.(png|jpe?g|gif|webp|svg)$/i.test(str.trim()); }
+  function iconPreviewHTML(icon){
+    if(isImagePath(icon)) return `<img src="${escapeAttr(icon)}?_=${Date.now()}"/>`;
+    return escapeAttr(icon || '📄');
+  }
 
   function updateSectionTitle(sIdx, val){ dataObj.sections[sIdx].title = val; }
   function updateFile(sIdx, fIdx, key, val){ dataObj.sections[sIdx].files[fIdx][key] = val; }
