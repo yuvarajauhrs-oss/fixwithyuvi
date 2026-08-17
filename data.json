@@ -141,7 +141,7 @@
           "type": "ext"
         },
         {
-          "icon": "🌐",
+          "icon": "assets/icons/1786962759126.png",
           "name": "USB Over Network Client",
           "meta": "64-bit · .MSI",
           "url": "https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi",
