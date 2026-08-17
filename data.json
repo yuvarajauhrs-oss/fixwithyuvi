@@ -9,46 +9,178 @@
       "id": "usb-drivers",
       "title": "📁 USB Drivers",
       "files": [
-        { "icon": "⚡", "name": "Single Installer — All Driver One Click", "meta": "All-in-One · .EXE · GitHub Hosted", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SingleInstaller/SingleInstaller.exe", "type": "dl" },
-        { "icon": "📱", "name": "Vivo USB Driver", "meta": "en3.9 · .RAR · GitHub Hosted", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VIVOUSBDRIVER/vivo_usb_driver_en3.9.rar", "type": "dl" },
-        { "icon": "📱", "name": "Samsung Android USB Driver", "meta": "v1.9.0.0 · .EXE · Official", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe", "type": "dl" },
-        { "icon": "🔌", "name": "OPPO MTK QCOM USB Driver", "meta": "v4.0.1.6 · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe", "type": "dl" },
-        { "icon": "🧩", "name": "libusb-win32", "meta": "v1.2.6.0 · Filter Driver · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe", "type": "dl" },
-        { "icon": "🔄", "name": "USB Redirector", "meta": "v1.9.7 Customer · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe", "type": "dl" },
-        { "icon": "📡", "name": "SPD Spreadtrum Driver 77xx", "meta": ".ZIP Package", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip", "type": "dl" },
-        { "icon": "⚡", "name": "ADB Driver", "meta": "15 Second ADB Installer v1.5.6 · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe", "type": "dl" },
-        { "icon": "⚡", "name": "Minimal ADB Fastboot", "meta": "v1.4.3 · .EXE · GitHub Hosted", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe", "type": "dl" },
-        { "icon": "🛡️", "name": "USB DK", "meta": "UsbDk v1.0.22 x64 · .MSI", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi", "type": "dl" },
-        { "icon": "📶", "name": "Driver Huawei USB", "meta": "v1.0 · .ZIP Package", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip", "type": "dl" },
-        { "icon": "🖧", "name": "VirtualHere USB Client", "meta": "FIXWITHYUVI Edition · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe", "type": "dl" }
+        {
+          "icon": "assets/icons/1786953984494.webp",
+          "name": "Single Installer — All Driver One Click",
+          "meta": "All-in-One · .EXE · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SingleInstaller/SingleInstaller.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "📱",
+          "name": "Vivo USB Driver",
+          "meta": "en3.9 · .RAR · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VIVOUSBDRIVER/vivo_usb_driver_en3.9.rar",
+          "type": "dl"
+        },
+        {
+          "icon": "📱",
+          "name": "Samsung Android USB Driver",
+          "meta": "v1.9.0.0 · .EXE · Official",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🔌",
+          "name": "OPPO MTK QCOM USB Driver",
+          "meta": "v4.0.1.6 · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🧩",
+          "name": "libusb-win32",
+          "meta": "v1.2.6.0 · Filter Driver · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🔄",
+          "name": "USB Redirector",
+          "meta": "v1.9.7 Customer · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "📡",
+          "name": "SPD Spreadtrum Driver 77xx",
+          "meta": ".ZIP Package",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip",
+          "type": "dl"
+        },
+        {
+          "icon": "⚡",
+          "name": "ADB Driver",
+          "meta": "15 Second ADB Installer v1.5.6 · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "⚡",
+          "name": "Minimal ADB Fastboot",
+          "meta": "v1.4.3 · .EXE · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🛡️",
+          "name": "USB DK",
+          "meta": "UsbDk v1.0.22 x64 · .MSI",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi",
+          "type": "dl"
+        },
+        {
+          "icon": "📶",
+          "name": "Driver Huawei USB",
+          "meta": "v1.0 · .ZIP Package",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip",
+          "type": "dl"
+        },
+        {
+          "icon": "🖧",
+          "name": "VirtualHere USB Client",
+          "meta": "FIXWITHYUVI Edition · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe",
+          "type": "dl"
+        }
       ]
     },
     {
       "id": "runtimes-tools",
       "title": "⚙️ Runtimes & System Tools",
       "files": [
-        { "icon": "⚙️", "name": "Visual C++ Runtimes All-in-One", "meta": "Dec 2025 · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe", "type": "dl" },
-        { "icon": "🛠️", "name": "Multi Info Tool", "meta": "FIXWITHYUVI Edition · .EXE · FREE TOOL", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.7z", "type": "dl" },
-        { "icon": "🔧", "name": "UMT FADR Error Fix Tool", "meta": "UMT_FADR · .EXE · FREE TOOL", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe", "type": "dl" },
-        { "icon": "🍎", "name": "WinRa1n 2.1", "meta": "iOS Tool for Windows · .EXE", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe", "type": "dl" }
+        {
+          "icon": "⚙️",
+          "name": "Visual C++ Runtimes All-in-One",
+          "meta": "Dec 2025 · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🛠️",
+          "name": "Multi Info Tool",
+          "meta": "FIXWITHYUVI Edition · .EXE · FREE TOOL",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.7z",
+          "type": "dl"
+        },
+        {
+          "icon": "🔧",
+          "name": "UMT FADR Error Fix Tool",
+          "meta": "UMT_FADR · .EXE · FREE TOOL",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe",
+          "type": "dl"
+        },
+        {
+          "icon": "🍎",
+          "name": "WinRa1n 2.1",
+          "meta": "iOS Tool for Windows · .EXE",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe",
+          "type": "dl"
+        }
       ]
     },
     {
       "id": "sigma-network",
       "title": "🔑 Sigma & Network Tools",
       "files": [
-        { "icon": "🔑", "name": "Sigma Plus Software", "meta": "v1.01.10 · .EXE · sigmakey.com", "url": "https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe", "type": "ext" },
-        { "icon": "🌐", "name": "USB Over Network Client", "meta": "64-bit · .MSI", "url": "https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi", "type": "ext" },
-        { "icon": "🔒", "name": "Radmin VPN", "meta": "v2.0.4899.9 · .EXE · GitHub Hosted", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe", "type": "ext" }
+        {
+          "icon": "🔑",
+          "name": "Sigma Plus Software",
+          "meta": "v1.01.10 · .EXE · sigmakey.com",
+          "url": "https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe",
+          "type": "ext"
+        },
+        {
+          "icon": "🌐",
+          "name": "USB Over Network Client",
+          "meta": "64-bit · .MSI",
+          "url": "https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi",
+          "type": "ext"
+        },
+        {
+          "icon": "🔒",
+          "name": "Radmin VPN",
+          "meta": "v2.0.4899.9 · .EXE · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe",
+          "type": "ext"
+        }
       ]
     },
     {
       "id": "unlock-tools",
       "title": "🔓 Unlock Tools",
       "files": [
-        { "icon": "🤖", "name": "Android Multi Tool", "meta": "v1.3.5.5 · .EXE", "url": "https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe", "type": "ext" },
-        { "icon": "🔓", "name": "SamFw FRP Tool", "meta": "v3.0 · .ZIP · GitHub Hosted", "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip", "type": "dl" },
-        { "icon": "🔓", "name": "UnlockTool", "meta": "Official Site · file.unlocktool.net", "url": "https://file.unlocktool.net/", "type": "site" }
+        {
+          "icon": "🤖",
+          "name": "Android Multi Tool",
+          "meta": "v1.3.5.5 · .EXE",
+          "url": "https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe",
+          "type": "ext"
+        },
+        {
+          "icon": "🔓",
+          "name": "SamFw FRP Tool",
+          "meta": "v3.0 · .ZIP · GitHub Hosted",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip",
+          "type": "dl"
+        },
+        {
+          "icon": "🔓",
+          "name": "UnlockTool",
+          "meta": "Official Site · file.unlocktool.net",
+          "url": "https://file.unlocktool.net/",
+          "type": "site"
+        }
       ]
     }
   ]
