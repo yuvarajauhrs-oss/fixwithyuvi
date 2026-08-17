@@ -182,6 +182,19 @@
           "type": "site"
         }
       ]
+    },
+    {
+      "id": "section-1786968265033",
+      "title": "📁TOOLS",
+      "files": [
+        {
+          "icon": "📄",
+          "name": "USB over Ethernet",
+          "meta": "SERVER TOOL",
+          "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/usb-over-ethernet/usb-over-ethernet.exe",
+          "type": "dl"
+        }
+      ]
     }
   ]
 }
