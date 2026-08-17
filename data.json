@@ -193,6 +193,13 @@
           "meta": "SERVER TOOL",
           "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/usb-over-ethernet/usb-over-ethernet.exe",
           "type": "dl"
+        },
+        {
+          "icon": "📄",
+          "name": "InstallFixer ",
+          "meta": "The-error-code-is-2502-FIX-",
+          "url": "https://github.com/fixwithyuvi/The-error-code-is-2502-FIX-TOOL-CMD/releases/download/InstallFixer.exe/InstallFixer.exe",
+          "type": "dl"
         }
       ]
     },
