@@ -60,11 +60,9 @@
   <h2>🔐 Admin Login</h2>
   <p class="sub">FIXWITHYUVI file manager</p>
   <div class="card">
-    <label>Admin Password</label>
-    <input type="password" id="pwField" placeholder="Enter admin password"/>
     <label>GitHub Personal Access Token</label>
     <input type="password" id="tokenField" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
-    <p class="muted" style="margin-top:6px">Needs a fine-grained token with "Contents: Read and write" on the fixwithyuvi repo. This is what actually authorizes saving — the password alone is just a screen lock. <a class="back" href="https://github.com/settings/tokens" target="_blank">Create one on GitHub →</a></p>
+    <p class="muted" style="margin-top:6px">Needs a fine-grained token with "Contents: Read and write" on the fixwithyuvi repo only. This token is the actual key — it's never stored in this file or committed anywhere, only kept in your browser for this session. <a class="back" href="https://github.com/settings/tokens" target="_blank">Create one on GitHub →</a></p>
     <div class="row">
       <button class="btn-primary" onclick="tryLogin()">Unlock Panel</button>
     </div>
@@ -101,7 +99,6 @@
   const GITHUB_REPO   = "fixwithyuvi";      // repo that serves this GitHub Pages site
   const GITHUB_BRANCH = "main";             // change to "master" if that's your default branch
   const DATA_PATH     = "data.json";        // path of data.json inside the repo
-  const ADMIN_PASSWORD = "changeme123";     // change this before publishing admin.html
   // ==========================================================
 
   let token = "";
@@ -109,12 +106,8 @@
   let dataObj = { sections: [] };
 
   function tryLogin(){
-    const pw = document.getElementById('pwField').value;
     const tok = document.getElementById('tokenField').value.trim();
     const statusEl = document.getElementById('loginStatus');
-    if(pw !== ADMIN_PASSWORD){
-      statusEl.className = 'status err'; statusEl.textContent = '❌ Wrong password.'; return;
-    }
     if(!tok){
       statusEl.className = 'status err'; statusEl.textContent = '❌ GitHub token is required to save changes.'; return;
     }
