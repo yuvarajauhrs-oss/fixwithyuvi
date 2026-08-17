@@ -99,6 +99,16 @@
     <button class="btn-ghost" onclick="addSection()">+ Add Tab</button>
   </div>
 
+  <div class="card">
+    <label style="margin-top:0">Site Logo Filename</label>
+    <input id="siteLogoField" placeholder="logo.png" onchange="dataObj.site=dataObj.site||{}; dataObj.site.logoUrl=this.value"/>
+    <p class="muted" style="margin-top:6px">Upload your logo image (e.g. logo.png, square works best) to the same repo folder as index.html, then put its filename here.</p>
+    <label>Site Name</label>
+    <input id="siteNameField" placeholder="FIXWITHYUVI" onchange="dataObj.site=dataObj.site||{}; dataObj.site.name=this.value"/>
+    <label>Tagline</label>
+    <input id="siteTaglineField" placeholder="usb drivers & flashing tools — direct download hub" onchange="dataObj.site=dataObj.site||{}; dataObj.site.tagline=this.value"/>
+  </div>
+
   <div id="sections"></div>
 </div>
 
@@ -169,6 +179,10 @@
       fileSha = file.sha;
       const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
       dataObj = JSON.parse(decoded);
+      dataObj.site = dataObj.site || { logoUrl: "logo.png", name: "FIXWITHYUVI", tagline: "" };
+      document.getElementById('siteLogoField').value = dataObj.site.logoUrl || '';
+      document.getElementById('siteNameField').value = dataObj.site.name || '';
+      document.getElementById('siteTaglineField').value = dataObj.site.tagline || '';
       renderSections();
       showStatus(manual ? '✅ Reloaded latest data from GitHub.' : '✅ Loaded. Ready to edit.', 'ok');
     }catch(e){
