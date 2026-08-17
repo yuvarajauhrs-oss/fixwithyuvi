@@ -4,181 +4,184 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FIXWITHYUVI – Direct Download Files</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg: #0d1117;
-    --card: #161b22;
-    --border: #30363d;
-    --accent: #58a6ff;
-    --green: #3fb950;
-    --yellow: #d29922;
-    --orange: #f0883e;
-    --text: #c9d1d9;
-    --muted: #6e7681;
-    --red: #f85149;
+  :root{
+    --bg:#15130f;
+    --surface:#1f1b14;
+    --surface2:#262015;
+    --border:#3a3222;
+    --copper:#e8823c;
+    --copper-light:#f5a662;
+    --trace:#5eead4;
+    --text:#eae4d6;
+    --muted:#8c8370;
+    --ok:#4ade80;
+    --warn:#f5c451;
+    --red:#f87171;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, #241d10 0%, transparent 45%),
+      radial-gradient(circle at 100% 20%, #1a2420 0%, transparent 40%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    line-height:1.6;
+    min-height:100vh;
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  a{color:var(--copper-light);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrapper{max-width:1000px;margin:0 auto;padding:0 16px 70px;}
 
-  .wrapper { max-width: 1000px; margin: 0 auto; padding: 0 16px 60px; }
+  header{padding:40px 0 22px;text-align:center;}
+  .logo{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:44px;color:#fff;letter-spacing:1px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .logo .plug{color:var(--copper);}
+  .logo::before{
+    content:"";width:10px;height:10px;border-radius:50%;
+    background:var(--ok);box-shadow:0 0 10px var(--ok);
+    display:inline-block;
+  }
+  .tagline{color:var(--muted);font-size:13px;margin-top:8px;font-family:'JetBrains Mono',monospace;}
 
-  header {
-    padding: 36px 0 24px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 24px;
-    text-align: center;
+  .ip-strip{
+    margin-top:16px;display:inline-flex;align-items:center;gap:10px;
+    background:var(--surface);border:1px solid var(--border);
+    padding:8px 16px;border-radius:8px;
   }
-  .logo { font-family: 'Roboto Mono', monospace; font-size: 64px; font-weight: 700; color: #fff; letter-spacing: 4px; }
-  .logo span { color: var(--accent); }
-  .tagline { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .ip-strip .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+  .ip-strip .val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--trace);letter-spacing:1px;}
+  .ip-strip button{
+    padding:5px 12px;border-radius:5px;border:1px solid var(--border);
+    background:transparent;color:var(--muted);font-size:12px;cursor:pointer;
+    font-family:'Inter',sans-serif;transition:all .15s;
+  }
+  .ip-strip button:hover{border-color:var(--copper);color:var(--copper-light);}
 
-  .top-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+  .top-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:28px 0 18px;}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;
+    font-size:11px;font-weight:600;border:1px solid;font-family:'JetBrains Mono',monospace;
   }
-  .badges { display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
-    border: 1px solid;
-  }
-  .badge-green { background: #1a3a2a; border-color: #2ea043; color: var(--green); }
-  .badge-blue  { background: #0d2340; border-color: #1f6feb; color: var(--accent); }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .badge-ok{background:#132018;border-color:#295c3d;color:var(--ok);}
+  .badge-copper{background:#2a1d10;border-color:#6b4520;color:var(--copper-light);}
+  #clock{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;color:var(--text);white-space:nowrap;}
 
-  .contact-bar { display: flex; gap: 8px; flex-wrap: wrap; }
-  .contact-btn {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
-    border: 1px solid; cursor: pointer; transition: opacity 0.15s;
-    text-decoration: none;
+  .contact-bar{display:flex;gap:8px;flex-wrap:wrap;}
+  .contact-btn{
+    display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:6px;
+    font-size:12px;font-weight:600;border:1px solid;cursor:pointer;transition:opacity .15s;
   }
-  .contact-btn:hover { opacity: 0.8; text-decoration: none; }
-  .btn-wa  { background: #1a3a2a; border-color: #2ea043; color: #3fb950; }
-  .btn-tg  { background: #0d2a3a; border-color: #1f6feb; color: var(--accent); }
+  .contact-btn:hover{opacity:.8;text-decoration:none;}
+  .btn-wa{background:#132018;border-color:#295c3d;color:var(--ok);}
+  .btn-tg{background:#12202a;border-color:#255267;color:var(--trace);}
+  .admin-link{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:7px 12px;}
+  .admin-link:hover{color:var(--copper-light);border-color:var(--copper);text-decoration:none;}
 
-  .search-wrap { margin-bottom: 24px; }
-  .search-wrap input {
-    width: 100%; max-width: 480px;
-    padding: 8px 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.15s;
+  .search-wrap{margin-bottom:20px;}
+  .search-wrap input{
+    width:100%;max-width:520px;padding:11px 16px;background:var(--surface);
+    border:1px solid var(--border);border-radius:8px;color:var(--text);
+    font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border-color .15s;
   }
-  .search-wrap input:focus { border-color: var(--accent); }
-  .search-wrap input::placeholder { color: var(--muted); }
+  .search-wrap input:focus{border-color:var(--copper);}
+  .search-wrap input::placeholder{color:var(--muted);}
 
-  #clock {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
+  .ticker-wrap{
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;
+    overflow:hidden;display:flex;align-items:center;margin-bottom:24px;
   }
+  .ticker-label{
+    background:var(--copper);color:#1a1206;font-size:10px;font-weight:700;
+    letter-spacing:1px;padding:8px 12px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;
+  }
+  .ticker-scroll{padding:0 12px;overflow:hidden;flex:1;}
+  .ticker-text{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    white-space:nowrap;display:inline-block;animation:scroll 32s linear infinite;
+  }
+  @keyframes scroll{from{transform:translateX(100%);}to{transform:translateX(-100%);}}
 
-  .section { margin-bottom: 32px; }
-  .section-header {
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; color: var(--muted);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px; margin-bottom: 12px;
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-bottom:18px;scrollbar-width:thin;}
+  .tabs::-webkit-scrollbar{height:5px;}
+  .tabs::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  .tab-btn{
+    position:relative;flex-shrink:0;font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:9px 9px 0 0;padding:11px 18px 9px;cursor:pointer;transition:all .15s;
+    border-bottom:none;
   }
+  .tab-btn::before{
+    content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);
+    width:16px;height:3px;border-radius:2px;background:var(--border);transition:all .15s;
+  }
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{
+    color:#fff;background:var(--surface2);border-color:var(--copper);
+    box-shadow:0 -2px 0 var(--copper) inset;
+  }
+  .tab-btn.active::before{background:var(--copper);box-shadow:0 0 6px var(--copper);}
+  .tab-count{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;margin-left:5px;}
 
-  .file-list { display: flex; flex-direction: column; gap: 2px; }
-  .file-row {
-    display: grid;
-    grid-template-columns: 28px 1fr auto auto;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    transition: border-color 0.15s;
+  .panel{
+    background:var(--surface2);border:1px solid var(--border);border-radius:0 8px 8px 8px;
+    padding:14px;
   }
-  .file-row:hover { border-color: #444c56; }
-  .file-row.hidden { display: none; }
-  .file-icon { font-size: 18px; text-align: center; }
-  .file-name { font-weight: 500; color: #e6edf3; font-size: 13px; }
-  .file-meta { font-size: 11px; color: var(--muted); font-family: 'Roboto Mono', monospace; margin-top: 1px; }
-  .file-actions { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+  .file-list{display:flex;flex-direction:column;gap:8px;}
+  .file-row{
+    display:grid;grid-template-columns:36px 1fr auto auto;align-items:center;gap:14px;
+    padding:12px 14px;background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;transition:border-color .15s;
+  }
+  .file-row:hover{border-color:var(--copper);}
+  .file-row.hidden{display:none;}
+  .file-icon{
+    width:36px;height:36px;border-radius:8px;background:var(--surface2);
+    border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;
+  }
+  .file-name{font-weight:600;color:#fff;font-size:13px;font-family:'Space Grotesk',sans-serif;}
+  .file-meta{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;}
+  .file-actions{display:flex;gap:6px;align-items:center;white-space:nowrap;}
 
-  .btn-dl {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 600;
-    border: 1px solid #2ea043; background: #1a3a2a; color: var(--green);
-    text-decoration: none; transition: opacity 0.15s; white-space: nowrap;
+  .btn-dl{
+    display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;
+    font-size:11px;font-weight:700;border:1px solid #295c3d;background:#132018;color:var(--ok);
+    text-decoration:none;transition:opacity .15s;white-space:nowrap;
   }
-  .btn-dl:hover { opacity: 0.8; text-decoration: none; }
-  .btn-dl.ext { border-color: #d29922; background: #2e2100; color: var(--yellow); }
-  .btn-dl.site { border-color: #58a6ff; background: #0d2340; color: var(--accent); }
+  .btn-dl:hover{opacity:.8;text-decoration:none;}
+  .btn-dl.ext{border-color:#6b5620;background:#2a2210;color:var(--warn);}
+  .btn-dl.site{border-color:#255267;background:#12202a;color:var(--trace);}
 
-  .btn-copy {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 5px 10px; border-radius: 5px; font-size: 11px;
-    border: 1px solid var(--border); background: transparent; color: var(--muted);
-    cursor: pointer; transition: all 0.15s; font-family: 'Roboto', sans-serif;
-    white-space: nowrap;
+  .btn-copy{
+    display:inline-flex;align-items:center;gap:4px;padding:7px 11px;border-radius:6px;
+    font-size:11px;border:1px solid var(--border);background:transparent;color:var(--muted);
+    cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;white-space:nowrap;
   }
-  .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-copy.copied { border-color: var(--green); color: var(--green); }
+  .btn-copy:hover{border-color:var(--copper);color:var(--copper-light);}
+  .btn-copy.copied{border-color:var(--ok);color:var(--ok);}
 
-  .no-results {
-    padding: 32px; text-align: center; color: var(--muted);
-    font-size: 13px; display: none;
-  }
+  .no-results,.loading-msg{padding:36px;text-align:center;color:var(--muted);font-size:13px;}
 
-  .ticker-wrap {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 6px; overflow: hidden;
-    display: flex; align-items: center; margin: 16px 0 24px;
+  footer{
+    border-top:1px solid var(--border);padding-top:20px;margin-top:24px;
+    font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:'JetBrains Mono',monospace;
   }
-  .ticker-label {
-    background: var(--accent); color: #000; font-size: 10px; font-weight: 700;
-    letter-spacing: 1px; padding: 8px 12px; white-space: nowrap; flex-shrink: 0;
-  }
-  .ticker-scroll { padding: 0 12px; overflow: hidden; flex: 1; }
-  .ticker-text {
-    font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--muted);
-    white-space: nowrap; display: inline-block;
-    animation: scroll 30s linear infinite;
-  }
-  @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  footer a{color:var(--muted);}
+  footer a:hover{color:var(--copper-light);}
 
-  footer {
-    border-top: 1px solid var(--border); padding-top: 20px; margin-top: 16px;
-    font-size: 11px; color: var(--muted); display: flex;
-    justify-content: space-between; flex-wrap: wrap; gap: 10px;
-  }
-  footer a { color: var(--muted); }
-  footer a:hover { color: var(--accent); }
-
-  .admin-link {
-    font-size: 11px; color: var(--muted); border: 1px solid var(--border);
-    border-radius: 5px; padding: 5px 10px;
-  }
-  .admin-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
-
-  .loading-msg { padding: 24px; text-align: center; color: var(--muted); font-size: 13px; }
-
-  @media (max-width: 600px) {
-    .file-row { grid-template-columns: 28px 1fr; }
-    .file-actions { grid-column: 2; }
-    .top-bar { flex-direction: column; align-items: flex-start; }
+  @media (max-width:600px){
+    .file-row{grid-template-columns:36px 1fr;}
+    .file-actions{grid-column:2;}
+    .top-bar{flex-direction:column;align-items:flex-start;}
   }
 </style>
 </head>
@@ -186,21 +189,20 @@
 <div class="wrapper">
 
   <header>
-    <div class="logo">FIX<span>WITH</span>YUVI</div>
-    <div class="tagline">USB Drivers &amp; Tools — Free Direct Download Hub</div>
-    <div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;">
-      <span style="font-family:'Roboto Mono',monospace;font-size:22px;color:var(--muted);font-weight:600;">IP:</span>
-      <span id="ip-val" style="font-family:'Roboto Mono',monospace;font-size:28px;font-weight:700;color:var(--accent);letter-spacing:2px;">Detecting...</span>
-      <button onclick="copyIP()" id="ip-copy-btn" style="padding:5px 14px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Roboto',sans-serif;font-size:14px;cursor:pointer;transition:all 0.15s;">📋 Copy</button>
+    <div class="logo"><span class="plug">⚡</span>FIXWITHYUVI</div>
+    <div class="tagline">// usb drivers &amp; flashing tools — direct download hub</div>
+    <div class="ip-strip">
+      <span class="lbl">Your IP</span>
+      <span class="val" id="ip-val">Detecting…</span>
+      <button onclick="copyIP()" id="ip-copy-btn">Copy</button>
     </div>
   </header>
 
   <div class="top-bar">
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
       <div class="badges">
-        <span class="badge badge-green"><span class="dot"></span> Live</span>
-        <span class="badge badge-blue" id="file-count-badge">📦 … Files</span>
-        <span class="badge badge-blue">🆓 100% Free</span>
+        <span class="badge badge-ok">● Live</span>
+        <span class="badge badge-copper" id="file-count-badge">⚡ … Files</span>
       </div>
       <div id="clock">--:--:-- -- · IST</div>
     </div>
@@ -212,162 +214,159 @@
   </div>
 
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="🔍  Search drivers, tools..." autocomplete="off"/>
+    <input type="text" id="searchInput" placeholder="search drivers, tools…" autocomplete="off"/>
   </div>
 
   <div class="ticker-wrap">
-    <div class="ticker-label">📢 NEWS</div>
+    <div class="ticker-label">NEWS</div>
     <div class="ticker-scroll">
       <span class="ticker-text">
-        ✅ SamFw FRP Tool v3.0 added &nbsp;·&nbsp; ✅ Vivo USB Driver added &nbsp;·&nbsp; ✅ Single Installer (All Driver One Click) added &nbsp;·&nbsp; ✅ UnlockTool page added &nbsp;·&nbsp; ✅ Android Multi Tool v1.3.5.5 added &nbsp;·&nbsp; ✅ Minimal ADB Fastboot v1.4.3 added &nbsp;·&nbsp; ✅ UMT FADR Error Fix Tool added &nbsp;·&nbsp; ✅ Multi Info Tool FIXWITHYUVI added &nbsp;·&nbsp; ✅ Driver Huawei USB v1.0 added &nbsp;·&nbsp; ✅ VirtualHere USB Client added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads · No Login Required &nbsp;·&nbsp;
+        ✅ SamFw FRP Tool v3.0 added &nbsp;·&nbsp; ✅ Vivo USB Driver added &nbsp;·&nbsp; ✅ Single Installer (All Driver One Click) added &nbsp;·&nbsp; ✅ UnlockTool page added &nbsp;·&nbsp; ✅ Android Multi Tool v1.3.5.5 added &nbsp;·&nbsp; ✅ Minimal ADB Fastboot v1.4.3 added &nbsp;·&nbsp; 🔗 All files hosted on GitHub — fast &amp; reliable &nbsp;·&nbsp; 💬 Need help? Contact on WhatsApp or Telegram &nbsp;·&nbsp; 🆓 100% Free · No Ads &nbsp;·&nbsp;
       </span>
     </div>
   </div>
 
   <div id="loadingMsg" class="loading-msg">Loading files…</div>
-  <div id="noResults" class="no-results">😕 No files found. Try a different search!</div>
-  <div id="sections"></div>
+  <div id="tabs" class="tabs"></div>
+  <div id="panel" class="panel" style="display:none">
+    <div id="fileList" class="file-list"></div>
+    <div id="noResults" class="no-results" style="display:none">😕 No files found. Try a different search!</div>
+  </div>
 
   <footer>
-    <span>© 2025 FIXWITHYUVI · All files are direct links · 100% Free · No Ads</span>
+    <span>© 2025 FIXWITHYUVI · direct links · 100% free · no ads</span>
     <span>
-      <a href="https://wa.me/919585656587" target="_blank">💬 WhatsApp</a> &nbsp;·&nbsp;
-      <a href="https://t.me/FixWithYuviOfficial" target="_blank">✈️ Telegram</a>
+      <a href="https://wa.me/919585656587" target="_blank">WhatsApp</a> ·
+      <a href="https://t.me/FixWithYuviOfficial" target="_blank">Telegram</a>
     </span>
   </footer>
 
 </div>
 
 <script>
-  function updateClock() {
-    const now = new Date();
-    const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-    const h = ist.getHours(), m = ist.getMinutes(), s = ist.getSeconds();
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const h12 = String(h % 12 || 12).padStart(2,'0');
-    const mm = String(m).padStart(2,'0');
-    const ss = String(s).padStart(2,'0');
-    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const dayName = days[ist.getDay()];
-    const date = String(ist.getDate()).padStart(2,'0');
-    const month = months[ist.getMonth()];
-    const year = ist.getFullYear();
-    document.getElementById('clock').textContent = dayName + ', ' + date + ' ' + month + ' ' + year + '  ·  ' + h12 + ':' + mm + ':' + ss + ' ' + ampm + ' IST';
+  function updateClock(){
+    const now=new Date();
+    const ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
+    const h=ist.getHours(),m=ist.getMinutes(),s=ist.getSeconds();
+    const ampm=h>=12?'PM':'AM';
+    const h12=String(h%12||12).padStart(2,'0');
+    const mm=String(m).padStart(2,'0'), ss=String(s).padStart(2,'0');
+    const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('clock').textContent =
+      days[ist.getDay()]+', '+String(ist.getDate()).padStart(2,'0')+' '+months[ist.getMonth()]+' '+ist.getFullYear()+'  ·  '+h12+':'+mm+':'+ss+' '+ampm+' IST';
   }
-  updateClock();
-  setInterval(updateClock, 1000);
+  updateClock(); setInterval(updateClock,1000);
 
-  var currentIP = '';
-  function fillIP(ip) {
-    currentIP = ip || '';
-    document.getElementById('ip-val').textContent = currentIP || 'Unavailable';
+  var currentIP='';
+  function fillIP(ip){ currentIP=ip||''; document.getElementById('ip-val').textContent=currentIP||'Unavailable'; }
+  function fetchIP(){
+    document.getElementById('ip-val').textContent='Detecting…';
+    fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{if(!d.ip)throw 0;fillIP(d.ip);})
+      .catch(()=>fetch('https://api64.ipify.org?format=json').then(r=>r.json()).then(d=>{if(!d.ip)throw 0;fillIP(d.ip);}))
+      .catch(()=>{document.getElementById('ip-val').textContent='Unavailable';});
   }
-  function fetchIP() {
-    document.getElementById('ip-val').textContent = 'Detecting...';
-    fetch('https://api.ipify.org?format=json')
-      .then(r => r.json()).then(d => { if (!d.ip) throw new Error(); fillIP(d.ip); })
-      .catch(() => fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => { if (!d.ip) throw new Error(); fillIP(d.ip); }))
-      .catch(() => { document.getElementById('ip-val').textContent = 'Unavailable'; });
-  }
-  function copyIP() {
-    if (!currentIP) return;
-    navigator.clipboard.writeText(currentIP).then(() => {
-      var btn = document.getElementById('ip-copy-btn');
-      btn.textContent = '✅ Copied!';
-      setTimeout(() => { btn.textContent = '📋 Copy IP'; }, 2000);
+  function copyIP(){
+    if(!currentIP)return;
+    navigator.clipboard.writeText(currentIP).then(()=>{
+      var btn=document.getElementById('ip-copy-btn');
+      btn.textContent='Copied!'; setTimeout(()=>{btn.textContent='Copy';},2000);
     });
   }
   fetchIP();
 
-  function copyLink(btn, url) {
-    navigator.clipboard.writeText(url).then(() => {
-      btn.textContent = '✅ Copied!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  function copyLink(btn,url){
+    navigator.clipboard.writeText(url).then(()=>{
+      btn.textContent='✅ Copied!'; btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent='📋 Copy'; btn.classList.remove('copied');},2000);
     });
   }
 
-  function btnLabel(type){
-    if(type === 'ext') return '⬇ Download';
-    if(type === 'site') return '🌐 Visit Page';
-    return '⬇ Download';
-  }
-  function btnClass(type){
-    if(type === 'ext') return 'btn-dl ext';
-    if(type === 'site') return 'btn-dl site';
-    return 'btn-dl';
-  }
-  function btnTarget(type){
-    return type === 'site' ? ' target="_blank"' : '';
-  }
+  function btnLabel(type){ return type==='site' ? '🌐 Visit Page' : '⬇ Download'; }
+  function btnClass(type){ return type==='ext' ? 'btn-dl ext' : type==='site' ? 'btn-dl site' : 'btn-dl'; }
+  function btnTarget(type){ return type==='site' ? ' target="_blank"' : ''; }
+
+  let SECTIONS = [];
+  let activeTab = 0;
+  let searching = false;
 
   async function loadFiles(){
     try{
       const res = await fetch('data.json?_=' + Date.now());
       const data = await res.json();
-      renderSections(data.sections || []);
+      SECTIONS = data.sections || [];
+      document.getElementById('loadingMsg').style.display='none';
+      renderTabs();
+      renderPanel();
+      setupSearch();
     }catch(e){
-      document.getElementById('loadingMsg').textContent = '⚠️ Could not load file list (data.json). Check it exists next to this page.';
+      document.getElementById('loadingMsg').textContent='⚠️ Could not load file list (data.json missing?).';
     }
   }
 
-  function renderSections(sections){
-    document.getElementById('loadingMsg').style.display = 'none';
-    const wrap = document.getElementById('sections');
+  function renderTabs(){
+    const wrap = document.getElementById('tabs');
     wrap.innerHTML = '';
-    let totalFiles = 0;
-
-    sections.forEach(section => {
-      const div = document.createElement('div');
-      div.className = 'section';
-      div.setAttribute('data-section','');
-
-      let rows = '';
-      section.files.forEach(file => {
-        totalFiles++;
-        const nameKey = (file.name + ' ' + file.meta).toLowerCase();
-        rows += `
-          <div class="file-row" data-name="${nameKey.replace(/"/g,'')}">
-            <div class="file-icon">${file.icon || '📄'}</div>
-            <div class="file-info">
-              <div class="file-name">${file.name}</div>
-              <div class="file-meta">${file.meta || ''}</div>
-            </div>
-            <div class="file-actions">
-              <a class="${btnClass(file.type)}" href="${file.url}"${btnTarget(file.type)}>${btnLabel(file.type)}</a>
-              <button class="btn-copy" onclick="copyLink(this,'${file.url.replace(/'/g,"\\'")}')">📋 Copy</button>
-            </div>
-          </div>`;
-      });
-
-      div.innerHTML = `
-        <div class="section-header">${section.title}</div>
-        <div class="file-list">${rows}</div>`;
-      wrap.appendChild(div);
+    let total = 0;
+    SECTIONS.forEach((section, idx) => {
+      total += section.files.length;
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (idx === activeTab && !searching ? ' active' : '');
+      btn.innerHTML = section.title + ' <span class="tab-count">' + section.files.length + '</span>';
+      btn.onclick = () => { activeTab = idx; searching = false; document.getElementById('searchInput').value=''; renderTabs(); renderPanel(); };
+      wrap.appendChild(btn);
     });
+    document.getElementById('file-count-badge').textContent = '⚡ ' + total + ' Files';
+  }
 
-    document.getElementById('file-count-badge').textContent = '📦 ' + totalFiles + ' Files';
-    setupSearch();
+  function fileRowHTML(file){
+    const key = (file.name + ' ' + file.meta).toLowerCase().replace(/"/g,'');
+    return `
+      <div class="file-row" data-name="${key}">
+        <div class="file-icon">${file.icon || '📄'}</div>
+        <div class="file-info">
+          <div class="file-name">${file.name}</div>
+          <div class="file-meta">${file.meta || ''}</div>
+        </div>
+        <div class="file-actions">
+          <a class="${btnClass(file.type)}" href="${file.url}"${btnTarget(file.type)}>${btnLabel(file.type)}</a>
+          <button class="btn-copy" onclick="copyLink(this,'${(file.url||'').replace(/'/g,"\\'")}')">📋 Copy</button>
+        </div>
+      </div>`;
+  }
+
+  function renderPanel(){
+    document.getElementById('panel').style.display = '';
+    const listEl = document.getElementById('fileList');
+    let files = [];
+    if(searching){
+      SECTIONS.forEach(s => files = files.concat(s.files));
+    } else {
+      files = (SECTIONS[activeTab] && SECTIONS[activeTab].files) || [];
+    }
+    listEl.innerHTML = files.map(fileRowHTML).join('');
+    applySearchFilter();
   }
 
   function setupSearch(){
-    document.getElementById('searchInput').addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
-      const rows = document.querySelectorAll('.file-row');
-      const sections = document.querySelectorAll('[data-section]');
-      let total = 0;
-      rows.forEach(row => {
-        const match = !q || (row.getAttribute('data-name') || '').includes(q);
-        row.classList.toggle('hidden', !match);
-        if (match) total++;
-      });
-      sections.forEach(section => {
-        const vis = section.querySelectorAll('.file-row:not(.hidden)').length;
-        section.style.display = vis === 0 ? 'none' : '';
-      });
-      document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
+    document.getElementById('searchInput').addEventListener('input', function(){
+      const q = this.value.trim();
+      searching = q.length > 0;
+      renderTabs();
+      renderPanel();
     });
+  }
+
+  function applySearchFilter(){
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const rows = document.querySelectorAll('.file-row');
+    let visible = 0;
+    rows.forEach(row => {
+      const match = !q || (row.getAttribute('data-name')||'').includes(q);
+      row.classList.toggle('hidden', !match);
+      if(match) visible++;
+    });
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
   }
 
   loadFiles();
