@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FIXWITHYUVI – Admin Panel</title>
+<style>
+  :root{
+    --bg:#0d1117;--card:#161b22;--border:#30363d;--accent:#58a6ff;
+    --green:#3fb950;--yellow:#d29922;--orange:#f0883e;--text:#c9d1d9;--muted:#6e7681;--red:#f85149;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.6;}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 16px 80px;}
+  h1{font-size:22px;color:#fff;margin-bottom:4px;}
+  .sub{color:var(--muted);font-size:12px;margin-bottom:24px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:20px;}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;margin-top:12px;}
+  label:first-child{margin-top:0;}
+  input,select{
+    width:100%;padding:9px 12px;background:#0d1117;border:1px solid var(--border);
+    border-radius:6px;color:var(--text);font-size:13px;outline:none;
+  }
+  input:focus,select:focus{border-color:var(--accent);}
+  button{
+    cursor:pointer;border-radius:6px;font-size:13px;font-weight:600;padding:9px 16px;border:1px solid;
+  }
+  .btn-primary{background:#1f6feb;border-color:#1f6feb;color:#fff;}
+  .btn-primary:hover{background:#388bfd;}
+  .btn-green{background:#1a3a2a;border-color:#2ea043;color:var(--green);}
+  .btn-green:hover{opacity:.85;}
+  .btn-red{background:#3a1a1a;border-color:#f85149;color:var(--red);}
+  .btn-red:hover{opacity:.85;}
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--muted);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .section-block{border:1px solid var(--border);border-radius:8px;margin-bottom:16px;overflow:hidden;}
+  .section-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#0d1117;}
+  .section-head input{font-weight:700;color:#fff;background:transparent;border:none;font-size:14px;padding:2px 0;}
+  .file-item{display:grid;grid-template-columns:1fr 1fr 2fr 90px auto;gap:8px;padding:10px 16px;border-top:1px solid var(--border);align-items:center;}
+  .file-item input,.file-item select{font-size:12px;padding:7px 9px;}
+  .muted{color:var(--muted);font-size:11px;}
+  .status{padding:10px 14px;border-radius:6px;font-size:12px;margin-bottom:16px;display:none;}
+  .status.ok{display:block;background:#1a3a2a;border:1px solid #2ea043;color:var(--green);}
+  .status.err{display:block;background:#3a1a1a;border:1px solid #f85149;color:var(--red);}
+  .status.info{display:block;background:#0d2340;border:1px solid #1f6feb;color:var(--accent);}
+  #loginGate{max-width:380px;margin:80px auto;text-align:center;}
+  #loginGate h2{color:#fff;margin-bottom:6px;}
+  #loginGate .card{text-align:left;}
+  .hidden{display:none;}
+  .top-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+  a.back{color:var(--muted);font-size:12px;text-decoration:none;}
+  a.back:hover{color:var(--accent);}
+  @media (max-width:700px){ .file-item{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div id="loginGate" class="wrap">
+  <h2>🔐 Admin Login</h2>
+  <p class="sub">FIXWITHYUVI file manager</p>
+  <div class="card">
+    <label>Admin Password</label>
+    <input type="password" id="pwField" placeholder="Enter admin password"/>
+    <label>GitHub Personal Access Token</label>
+    <input type="password" id="tokenField" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
+    <p class="muted" style="margin-top:6px">Needs a fine-grained token with "Contents: Read and write" on the fixwithyuvi repo. This is what actually authorizes saving — the password alone is just a screen lock. <a class="back" href="https://github.com/settings/tokens" target="_blank">Create one on GitHub →</a></p>
+    <div class="row">
+      <button class="btn-primary" onclick="tryLogin()">Unlock Panel</button>
+    </div>
+    <div id="loginStatus" class="status"></div>
+  </div>
+</div>
+
+<div id="panel" class="wrap hidden">
+  <div class="top-actions">
+    <div>
+      <h1>FIXWITHYUVI Admin</h1>
+      <p class="sub">Edit links · they go live on the site instantly after saving</p>
+    </div>
+    <div class="row" style="margin-top:0">
+      <a class="back" href="index.html">← Back to site</a>
+      <button class="btn-ghost" onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <div class="row" style="margin-bottom:20px">
+    <button class="btn-primary" onclick="loadData(true)">🔄 Reload from GitHub</button>
+    <button class="btn-green" onclick="saveData()">💾 Save & Publish</button>
+    <button class="btn-ghost" onclick="addSection()">+ Add Section</button>
+  </div>
+
+  <div id="sections"></div>
+</div>
+
+<script>
+  // ====== CONFIGURE THESE THREE VALUES FOR YOUR REPO ======
+  const GITHUB_OWNER  = "yuvarajauhrs-oss";
+  const GITHUB_REPO   = "fixwithyuvi";      // repo that serves this GitHub Pages site
+  const GITHUB_BRANCH = "main";             // change to "master" if that's your default branch
+  const DATA_PATH     = "data.json";        // path of data.json inside the repo
+  const ADMIN_PASSWORD = "changeme123";     // change this before publishing admin.html
+  // ==========================================================
+
+  let token = "";
+  let fileSha = null;
+  let dataObj = { sections: [] };
+
+  function tryLogin(){
+    const pw = document.getElementById('pwField').value;
+    const tok = document.getElementById('tokenField').value.trim();
+    const statusEl = document.getElementById('loginStatus');
+    if(pw !== ADMIN_PASSWORD){
+      statusEl.className = 'status err'; statusEl.textContent = '❌ Wrong password.'; return;
+    }
+    if(!tok){
+      statusEl.className = 'status err'; statusEl.textContent = '❌ GitHub token is required to save changes.'; return;
+    }
+    token = tok;
+    sessionStorage.setItem('fwy_token', token);
+    document.getElementById('loginGate').classList.add('hidden');
+    document.getElementById('panel').classList.remove('hidden');
+    loadData();
+  }
+
+  function logout(){
+    sessionStorage.removeItem('fwy_token');
+    location.reload();
+  }
+
+  window.addEventListener('load', () => {
+    const saved = sessionStorage.getItem('fwy_token');
+    if(saved){
+      token = saved;
+      document.getElementById('loginGate').classList.add('hidden');
+      document.getElementById('panel').classList.remove('hidden');
+      loadData();
+    }
+  });
+
+  function showStatus(msg, kind){
+    const el = document.getElementById('status');
+    el.className = 'status ' + kind;
+    el.textContent = msg;
+  }
+
+  async function ghRequest(method, body){
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${DATA_PATH}?ref=${GITHUB_BRANCH}`;
+    const res = await fetch(url, {
+      method: method || 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json'
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.message || (res.status + ' ' + res.statusText));
+    }
+    return res.json();
+  }
+
+  async function loadData(manual){
+    showStatus('Loading data.json from GitHub…', 'info');
+    try{
+      const file = await ghRequest('GET');
+      fileSha = file.sha;
+      const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
+      dataObj = JSON.parse(decoded);
+      renderSections();
+      showStatus(manual ? '✅ Reloaded latest data from GitHub.' : '✅ Loaded. Ready to edit.', 'ok');
+    }catch(e){
+      showStatus('❌ Could not load data.json: ' + e.message + ' — check owner/repo/branch/token in admin.html config.', 'err');
+    }
+  }
+
+  async function saveData(){
+    showStatus('Saving to GitHub…', 'info');
+    try{
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataObj, null, 2))));
+      const body = {
+        message: 'Update links via admin panel',
+        content: content,
+        sha: fileSha,
+        branch: GITHUB_BRANCH
+      };
+      const result = await ghRequest('PUT', body);
+      fileSha = result.content.sha;
+      showStatus('✅ Saved! Live on the site in a few seconds (GitHub Pages redeploy).', 'ok');
+    }catch(e){
+      showStatus('❌ Save failed: ' + e.message, 'err');
+    }
+  }
+
+  function renderSections(){
+    const wrap = document.getElementById('sections');
+    wrap.innerHTML = '';
+    dataObj.sections.forEach((section, sIdx) => {
+      const block = document.createElement('div');
+      block.className = 'section-block';
+
+      const head = document.createElement('div');
+      head.className = 'section-head';
+      head.innerHTML = `
+        <input value="${escapeAttr(section.title)}" onchange="updateSectionTitle(${sIdx}, this.value)"/>
+        <div class="row" style="margin:0">
+          <button class="btn-ghost" onclick="addFile(${sIdx})">+ Add Link</button>
+          <button class="btn-red" onclick="removeSection(${sIdx})">Delete Section</button>
+        </div>`;
+      block.appendChild(head);
+
+      section.files.forEach((file, fIdx) => {
+        const row = document.createElement('div');
+        row.className = 'file-item';
+        row.innerHTML = `
+          <input value="${escapeAttr(file.name)}" placeholder="Name" onchange="updateFile(${sIdx},${fIdx},'name',this.value)"/>
+          <input value="${escapeAttr(file.meta)}" placeholder="Meta (version · type)" onchange="updateFile(${sIdx},${fIdx},'meta',this.value)"/>
+          <input value="${escapeAttr(file.url)}" placeholder="Download URL" onchange="updateFile(${sIdx},${fIdx},'url',this.value)"/>
+          <select onchange="updateFile(${sIdx},${fIdx},'type',this.value)">
+            <option value="dl" ${file.type==='dl'?'selected':''}>Direct</option>
+            <option value="ext" ${file.type==='ext'?'selected':''}>External</option>
+            <option value="site" ${file.type==='site'?'selected':''}>Visit Page</option>
+          </select>
+          <button class="btn-red" onclick="removeFile(${sIdx},${fIdx})">✕</button>`;
+        block.appendChild(row);
+      });
+
+      wrap.appendChild(block);
+    });
+  }
+
+  function escapeAttr(str){
+    return (str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  }
+
+  function updateSectionTitle(sIdx, val){ dataObj.sections[sIdx].title = val; }
+  function updateFile(sIdx, fIdx, key, val){ dataObj.sections[sIdx].files[fIdx][key] = val; }
+
+  function addFile(sIdx){
+    dataObj.sections[sIdx].files.push({icon:"📄", name:"New File", meta:"", url:"https://", type:"dl"});
+    renderSections();
+  }
+  function removeFile(sIdx, fIdx){
+    dataObj.sections[sIdx].files.splice(fIdx,1);
+    renderSections();
+  }
+  function addSection(){
+    dataObj.sections.push({id:"section-"+Date.now(), title:"📁 New Section", files:[]});
+    renderSections();
+  }
+  function removeSection(sIdx){
+    if(confirm('Delete this whole section and its links?')){
+      dataObj.sections.splice(sIdx,1);
+      renderSections();
+    }
+  }
+</script>
+</body>
+</html>
