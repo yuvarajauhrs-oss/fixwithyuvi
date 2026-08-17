@@ -167,6 +167,14 @@
   footer a { color: var(--muted); }
   footer a:hover { color: var(--accent); }
 
+  .admin-link {
+    font-size: 11px; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 5px; padding: 5px 10px;
+  }
+  .admin-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+  .loading-msg { padding: 24px; text-align: center; color: var(--muted); font-size: 13px; }
+
   @media (max-width: 600px) {
     .file-row { grid-template-columns: 28px 1fr; }
     .file-actions { grid-column: 2; }
@@ -191,7 +199,7 @@
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
       <div class="badges">
         <span class="badge badge-green"><span class="dot"></span> Live</span>
-        <span class="badge badge-blue">📦 20 Files</span>
+        <span class="badge badge-blue" id="file-count-badge">📦 … Files</span>
         <span class="badge badge-blue">🆓 100% Free</span>
       </div>
       <div id="clock">--:--:-- -- · IST</div>
@@ -199,6 +207,7 @@
     <div class="contact-bar">
       <a class="contact-btn btn-wa" href="https://wa.me/919585656587" target="_blank">💬 WhatsApp</a>
       <a class="contact-btn btn-tg" href="https://t.me/FixWithYuviOfficial" target="_blank">✈️ Telegram</a>
+      <a class="admin-link" href="admin.html">🔐 Admin</a>
     </div>
   </div>
 
@@ -215,305 +224,9 @@
     </div>
   </div>
 
+  <div id="loadingMsg" class="loading-msg">Loading files…</div>
   <div id="noResults" class="no-results">😕 No files found. Try a different search!</div>
-
-  <!-- USB DRIVERS -->
-  <div class="section" data-section>
-    <div class="section-header">📁 USB Drivers</div>
-    <div class="file-list">
-
-      <div class="file-row" data-name="single installer all driver one click all in one">
-        <div class="file-icon">⚡</div>
-        <div class="file-info">
-          <div class="file-name">Single Installer — All Driver One Click</div>
-          <div class="file-meta">All-in-One · .EXE · GitHub Hosted</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SingleInstaller/SingleInstaller.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SingleInstaller/SingleInstaller.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="vivo usb driver">
-        <div class="file-icon">📱</div>
-        <div class="file-info">
-          <div class="file-name">Vivo USB Driver</div>
-          <div class="file-meta">en3.9 · .RAR · GitHub Hosted</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VIVOUSBDRIVER/vivo_usb_driver_en3.9.rar">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VIVOUSBDRIVER/vivo_usb_driver_en3.9.rar')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="samsung android usb driver">
-        <div class="file-icon">📱</div>
-        <div class="file-info">
-          <div class="file-name">Samsung Android USB Driver</div>
-          <div class="file-meta">v1.9.0.0 · .EXE · Official</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Samsung/SAMSUNG_USB_Driver_for_Mobile_Phones_v1.9.0.0.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="oppo mtk qcom usb driver">
-        <div class="file-icon">🔌</div>
-        <div class="file-info">
-          <div class="file-name">OPPO MTK QCOM USB Driver</div>
-          <div class="file-meta">v4.0.1.6 · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MTKQCOM/Oppo.USB.Driver.Setup.V4.0.1.6.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="libusb win32 filter driver">
-        <div class="file-icon">🧩</div>
-        <div class="file-info">
-          <div class="file-name">libusb-win32</div>
-          <div class="file-meta">v1.2.6.0 · Filter Driver · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/libusb-win32-devel-filter-1.2.6.0/libusb-win32-devel-filter-1.2.6.0.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="usb redirector">
-        <div class="file-icon">🔄</div>
-        <div class="file-info">
-          <div class="file-name">USB Redirector</div>
-          <div class="file-meta">v1.9.7 Customer · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/FIXWITHYUVI/FIXWITHYUVI.USB_Redirector.1.9.7.Customer.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="spd spreadtrum driver 77xx">
-        <div class="file-icon">📡</div>
-        <div class="file-info">
-          <div class="file-name">SPD Spreadtrum Driver 77xx</div>
-          <div class="file-meta">.ZIP Package</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_SPD_Spreadtrum_77xx.zip/Driver_SPD_Spreadtrum_77xx.zip')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="adb driver 15 second installer">
-        <div class="file-icon">⚡</div>
-        <div class="file-info">
-          <div class="file-name">ADB Driver</div>
-          <div class="file-meta">15 Second ADB Installer v1.5.6 · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/ADB/15.Second.ADB.Installer.v1.5.6.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="minimal adb fastboot adb fastboot minimal">
-        <div class="file-icon">⚡</div>
-        <div class="file-info">
-          <div class="file-name">Minimal ADB Fastboot</div>
-          <div class="file-meta">v1.4.3 · .EXE · GitHub Hosted</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MinimalADBFastbootv1.4.3.exe/Minimal.ADB.Fastboot.v1.4.3.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="usbdk usb dk">
-        <div class="file-icon">🛡️</div>
-        <div class="file-info">
-          <div class="file-name">USB DK</div>
-          <div class="file-meta">UsbDk v1.0.22 x64 · .MSI</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UsbDk_1.0.22_x64.msi/UsbDk_1.0.22_x64.msi')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="driver huawei usb huawei usb driver">
-        <div class="file-icon">📶</div>
-        <div class="file-info">
-          <div class="file-name">Driver Huawei USB</div>
-          <div class="file-meta">v1.0 · .ZIP Package</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Driver_Huawei_USB1.0.zip/Driver_Huawei_USB1.0.zip')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="virtualhere usb client virtual here">
-        <div class="file-icon">🖧</div>
-        <div class="file-info">
-          <div class="file-name">VirtualHere USB Client</div>
-          <div class="file-meta">FIXWITHYUVI Edition · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/VirtualHere/FIXWITHYUVI.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- RUNTIMES & TOOLS -->
-  <div class="section" data-section>
-    <div class="section-header">⚙️ Runtimes &amp; System Tools</div>
-    <div class="file-list">
-
-      <div class="file-row" data-name="visual c++ runtimes all in one">
-        <div class="file-icon">⚙️</div>
-        <div class="file-info">
-          <div class="file-name">Visual C++ Runtimes All-in-One</div>
-          <div class="file-meta">Dec 2025 · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/C%2B%2B/Vc_Redist_Aio.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="multi info tool fixwithyuvi system information">
-        <div class="file-icon">🛠️</div>
-        <div class="file-info">
-          <div class="file-name">Multi Info Tool</div>
-          <div class="file-meta">FIXWITHYUVI Edition · .EXE · FREE TOOL</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.7z">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Multi_Info_Tool_FIXWITHYUVI.exe/Multi_Info_Tool_FIXWITHYUVI.7z')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="umt fadr error fix tool umt_fadr">
-        <div class="file-icon">🔧</div>
-        <div class="file-info">
-          <div class="file-name">UMT FADR Error Fix Tool</div>
-          <div class="file-meta">UMT_FADR · .EXE · FREE TOOL</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/UMT_FADR/UMT_FADR.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-
-
-      <div class="file-row" data-name="winra1n ios windows jailbreak">
-        <div class="file-icon">🍎</div>
-        <div class="file-info">
-          <div class="file-name">WinRa1n 2.1</div>
-          <div class="file-meta">iOS Tool for Windows · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/WinRa1n2.1/WinRa1n2.1.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SIGMA & NETWORK TOOLS -->
-  <div class="section" data-section>
-    <div class="section-header">🔑 Sigma &amp; Network Tools</div>
-    <div class="file-list">
-
-      <div class="file-row" data-name="sigma plus software sigmakey">
-        <div class="file-icon">🔑</div>
-        <div class="file-info">
-          <div class="file-name">Sigma Plus Software</div>
-          <div class="file-meta">v1.01.10 · .EXE · sigmakey.com</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl ext" href="https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.10.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="usb over network client">
-        <div class="file-icon">🌐</div>
-        <div class="file-info">
-          <div class="file-name">USB Over Network Client</div>
-          <div class="file-meta">64-bit · .MSI</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl ext" href="https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://www.usb-over-network.com/dists/usbnet/usb-over-network-client-64bit.msi')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="radmin vpn virtual network">
-        <div class="file-icon">🔒</div>
-        <div class="file-info">
-          <div class="file-name">Radmin VPN</div>
-          <div class="file-meta">v2.0.4899.9 · .EXE · GitHub Hosted</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl ext" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/Radmin_VPN/Radmin_VPN_2.0.4899.9.1.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- UNLOCK TOOLS -->
-  <div class="section" data-section>
-    <div class="section-header">🔓 Unlock Tools</div>
-    <div class="file-list">
-
-      <div class="file-row" data-name="a android multi tool amt">
-        <div class="file-icon">🤖</div>
-        <div class="file-info">
-          <div class="file-name">A</div>
-          <div class="file-meta">v1.3.5.5 · .EXE</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl ext" href="https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://dl.androidmultitool.com/Android_Multi_Tool_v1.3.5.5.exe')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="samfw frp tool samsung frp bypass">
-        <div class="file-icon">🔓</div>
-        <div class="file-info">
-          <div class="file-name">SamFw FRP Tool</div>
-          <div class="file-meta">v3.0 · .ZIP · GitHub Hosted</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl" href="https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip">⬇ Download</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/SamFwFRPToolv3.0/SamFw_FRP_Tool_v3.0.zip')">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="file-row" data-name="unlocktool unlock tool gsm flash repair">
-        <div class="file-icon">🔓</div>
-        <div class="file-info">
-          <div class="file-name">UnlockTool</div>
-          <div class="file-meta">Official Site · file.unlocktool.net</div>
-        </div>
-        <div class="file-actions">
-          <a class="btn-dl site" href="https://file.unlocktool.net/" target="_blank">🌐 Visit Page</a>
-          <button class="btn-copy" onclick="copyLink(this,'https://file.unlocktool.net/')">📋 Copy</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <div id="sections"></div>
 
   <footer>
     <span>© 2025 FIXWITHYUVI · All files are direct links · 100% Free · No Ads</span>
@@ -545,23 +258,6 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  document.getElementById('searchInput').addEventListener('input', function() {
-    const q = this.value.toLowerCase().trim();
-    const rows = document.querySelectorAll('.file-row');
-    const sections = document.querySelectorAll('[data-section]');
-    let total = 0;
-    rows.forEach(row => {
-      const match = !q || (row.getAttribute('data-name') || '').includes(q);
-      row.classList.toggle('hidden', !match);
-      if (match) total++;
-    });
-    sections.forEach(section => {
-      const vis = section.querySelectorAll('.file-row:not(.hidden)').length;
-      section.style.display = vis === 0 ? 'none' : '';
-    });
-    document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
-  });
-
   var currentIP = '';
   function fillIP(ip) {
     currentIP = ip || '';
@@ -591,6 +287,90 @@
       setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
     });
   }
+
+  function btnLabel(type){
+    if(type === 'ext') return '⬇ Download';
+    if(type === 'site') return '🌐 Visit Page';
+    return '⬇ Download';
+  }
+  function btnClass(type){
+    if(type === 'ext') return 'btn-dl ext';
+    if(type === 'site') return 'btn-dl site';
+    return 'btn-dl';
+  }
+  function btnTarget(type){
+    return type === 'site' ? ' target="_blank"' : '';
+  }
+
+  async function loadFiles(){
+    try{
+      const res = await fetch('data.json?_=' + Date.now());
+      const data = await res.json();
+      renderSections(data.sections || []);
+    }catch(e){
+      document.getElementById('loadingMsg').textContent = '⚠️ Could not load file list (data.json). Check it exists next to this page.';
+    }
+  }
+
+  function renderSections(sections){
+    document.getElementById('loadingMsg').style.display = 'none';
+    const wrap = document.getElementById('sections');
+    wrap.innerHTML = '';
+    let totalFiles = 0;
+
+    sections.forEach(section => {
+      const div = document.createElement('div');
+      div.className = 'section';
+      div.setAttribute('data-section','');
+
+      let rows = '';
+      section.files.forEach(file => {
+        totalFiles++;
+        const nameKey = (file.name + ' ' + file.meta).toLowerCase();
+        rows += `
+          <div class="file-row" data-name="${nameKey.replace(/"/g,'')}">
+            <div class="file-icon">${file.icon || '📄'}</div>
+            <div class="file-info">
+              <div class="file-name">${file.name}</div>
+              <div class="file-meta">${file.meta || ''}</div>
+            </div>
+            <div class="file-actions">
+              <a class="${btnClass(file.type)}" href="${file.url}"${btnTarget(file.type)}>${btnLabel(file.type)}</a>
+              <button class="btn-copy" onclick="copyLink(this,'${file.url.replace(/'/g,"\\'")}')">📋 Copy</button>
+            </div>
+          </div>`;
+      });
+
+      div.innerHTML = `
+        <div class="section-header">${section.title}</div>
+        <div class="file-list">${rows}</div>`;
+      wrap.appendChild(div);
+    });
+
+    document.getElementById('file-count-badge').textContent = '📦 ' + totalFiles + ' Files';
+    setupSearch();
+  }
+
+  function setupSearch(){
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      const rows = document.querySelectorAll('.file-row');
+      const sections = document.querySelectorAll('[data-section]');
+      let total = 0;
+      rows.forEach(row => {
+        const match = !q || (row.getAttribute('data-name') || '').includes(q);
+        row.classList.toggle('hidden', !match);
+        if (match) total++;
+      });
+      sections.forEach(section => {
+        const vis = section.querySelectorAll('.file-row:not(.hidden)').length;
+        section.style.display = vis === 0 ? 'none' : '';
+      });
+      document.getElementById('noResults').style.display = total === 0 ? 'block' : 'none';
+    });
+  }
+
+  loadFiles();
 </script>
 </body>
 </html>
