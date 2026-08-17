@@ -151,7 +151,9 @@
   .file-icon{
     width:36px;height:36px;border-radius:8px;background:var(--surface2);
     border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;
+    overflow:hidden;
   }
+  .file-icon img{width:100%;height:100%;object-fit:cover;}
   .file-name{font-weight:600;color:#fff;font-size:13px;font-family:'Space Grotesk',sans-serif;}
   .file-meta{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;}
   .file-actions{display:flex;gap:6px;align-items:center;white-space:nowrap;}
@@ -294,6 +296,11 @@
   function btnLabel(type){ return type==='site' ? '🌐 Visit Page' : '⬇ Download'; }
   function btnClass(type){ return type==='ext' ? 'btn-dl ext' : type==='site' ? 'btn-dl site' : 'btn-dl'; }
   function btnTarget(type){ return type==='site' ? ' target="_blank"' : ''; }
+  function isImagePath(str){ return !!str && /\.(png|jpe?g|gif|webp|svg)$/i.test(str.trim()); }
+  function iconHTML(icon){
+    if(isImagePath(icon)) return `<img src="${icon}" alt=""/>`;
+    return icon || '📄';
+  }
 
   let SECTIONS = [];
   let activeTab = 0;
@@ -340,7 +347,7 @@
     const key = (file.name + ' ' + file.meta).toLowerCase().replace(/"/g,'');
     return `
       <div class="file-row" data-name="${key}">
-        <div class="file-icon">${file.icon || '📄'}</div>
+        <div class="file-icon">${iconHTML(file.icon)}</div>
         <div class="file-info">
           <div class="file-name">${file.name}</div>
           <div class="file-meta">${file.meta || ''}</div>
