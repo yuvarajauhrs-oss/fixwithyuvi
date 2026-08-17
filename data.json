@@ -172,7 +172,8 @@
           "name": "InstallFixer ",
           "meta": "The-error-code-is-2502-FIX-",
           "url": "https://github.com/fixwithyuvi/The-error-code-is-2502-FIX-TOOL-CMD/releases/download/InstallFixer.exe/InstallFixer.exe",
-          "type": "dl"
+          "type": "dl",
+          "image": "assets/screenshots/1786972656949.png"
         },
         {
           "icon": "📄",
@@ -186,7 +187,8 @@
           "name": "RADMEVPN ERROR FIX TOOL",
           "meta": "MicrosoftProgram_Install_and_Uninstall.meta.diagcab",
           "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/MicrosoftProgram_Install_and_Uninstall.meta.diagcab/MicrosoftProgram_Install_and_Uninstall.meta.diagcab",
-          "type": "dl"
+          "type": "dl",
+          "image": "assets/screenshots/1786972736609.jpg"
         }
       ]
     },
