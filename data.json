@@ -209,7 +209,8 @@
           "name": "usb-over-ethernet",
           "meta": "server",
           "url": "https://github.com/yuvarajauhrs-oss/MY-FILES/releases/download/usboverethernet/usb-over-ethernet.FIXWITYUVI.7z",
-          "type": "dl"
+          "type": "dl",
+          "image": "assets/screenshots/1787057208809.png"
         },
         {
           "icon": "📄",
